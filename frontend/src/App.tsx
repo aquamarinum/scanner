@@ -1,7 +1,9 @@
 import React from "react";
+import SignIn from "./pages/SignIn";
+import Home from "./pages/Home";
 
 function App() {
-  return <h1>Hi</h1>;
+  return <Home />;
 }
 
 export default App;
