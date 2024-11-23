@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 type ButtonProps = {
-  children: string;
+  children: string | ReactNode;
   active: boolean;
   onPress: () => void;
 };
