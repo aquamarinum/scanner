@@ -1,4 +1,5 @@
 import React from "react";
+import Subtitle from "../Subtitle";
 
 type ScanCardProps = {
   title: string;
@@ -13,7 +14,7 @@ const ScanCard: React.FC<ScanCardProps> = ({ title, iconSource, onPress }) => {
         <div>
           <img src={iconSource} alt={title + " card icon"} />
         </div>
-        <p>{title}</p>
+        <Subtitle>{title}</Subtitle>
       </div>
     </div>
   );
