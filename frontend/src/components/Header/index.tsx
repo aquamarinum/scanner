@@ -1,11 +1,11 @@
 import React from "react";
 
 type HeaderProps = {
-  content: string;
+  children: string;
 };
 
-const Header: React.FC<HeaderProps> = ({ content }) => {
-  return <h2>{content}</h2>;
+const Header: React.FC<HeaderProps> = ({ children }) => {
+  return <h2>{children}</h2>;
 };
 
 export default Header;

@@ -1,15 +1,15 @@
 import React from "react";
 
 type ButtonProps = {
-  label: string;
+  children: string;
   active: boolean;
   onPress: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ label, active, onPress }) => {
+const Button: React.FC<ButtonProps> = ({ children, active, onPress }) => {
   return (
     <div onClick={onPress}>
-      <div>{label}</div>
+      <div>{children}</div>
     </div>
   );
 };

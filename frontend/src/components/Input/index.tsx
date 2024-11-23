@@ -1,10 +1,11 @@
 import React from "react";
+import { ValidationStatuses } from "../../services/validation/Validator";
 
 type InputProps = {
   value: string;
   setter: (text: string) => void;
   placeholder: string;
-  label: string;
+  label: ValidationStatuses;
 };
 
 const Input: React.FC<InputProps> = ({

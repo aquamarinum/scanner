@@ -1,11 +1,11 @@
 import React from "react";
 
 type SubtitleProps = {
-  content: string;
+  children: string;
 };
 
-const Subtitle: React.FC<SubtitleProps> = ({ content }) => {
-  return <p>{content}</p>;
+const Subtitle: React.FC<SubtitleProps> = ({ children }) => {
+  return <p>{children}</p>;
 };
 
 export default Subtitle;

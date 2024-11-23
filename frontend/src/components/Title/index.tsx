@@ -1,11 +1,11 @@
 import React from "react";
 
 type TitleProps = {
-  content: string;
+  children: string;
 };
 
-const Title: React.FC<TitleProps> = ({ content }) => {
-  return <h6>{content}</h6>;
+const Title: React.FC<TitleProps> = ({ children }) => {
+  return <h6>{children}</h6>;
 };
 
 export default Title;
