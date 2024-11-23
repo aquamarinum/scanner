@@ -3,7 +3,7 @@ CREATE DATABASE Scannerdb;
 
 USE Scannerdb;
 
-CREATE TABLE User (
+CREATE TABLE Users (
   userId INT PRIMARY KEY,
   username VARCHAR(50),
   email VARCHAR(100),
@@ -12,160 +12,140 @@ CREATE TABLE User (
   registrated DATETIME
 );
 
-CREATE TABLE Subscription (
+CREATE TABLE Subscriptions (
   subscriptionId INT PRIMARY KEY,
   name VARCHAR(100),
   price DECIMAL(10,2),
   duration INT
 );
 
-CREATE TABLE Payment (
+CREATE TABLE Payments (
   paymentId INT PRIMARY KEY,
   sum DECIMAL(10,2),
   paymentDate DATETIME,
   paymentMethod VARCHAR(50)
 );
 
-CREATE TABLE Feature (
+CREATE TABLE Features (
   featureId INT PRIMARY KEY,
   name VARCHAR(100),
   description TEXT
 );
 
-CREATE TABLE UserSubscription (
+CREATE TABLE UserSubscriptions (
   userSubscriptionId INT PRIMARY KEY,
   subscriptionId INT,
+  paymentId INT,
   userId INT,
   startDate DATETIME,
   endDate DATETIME,
   status VARCHAR(50),
   FOREIGN KEY (userId) REFERENCES User(userId),
-  FOREIGN KEY (subscriptionId) REFERENCES Subscription(subscriptionId)
+  FOREIGN KEY (subscriptionId) REFERENCES Subscription(subscriptionId),
+  FOREIGN KEY (paymentId) REFERENCES Payments(solutionId) UNIQUE
 );
 
-CREATE TABLE SubscriptionFeature (
+CREATE TABLE SubscriptionFeatures (
   featureId INT PRIMARY KEY,
   subscriptionId INT,
   FOREIGN KEY (subscriptionId) REFERENCES Subscription(subscriptionId),
   FOREIGN KEY (featureId) REFERENCES Feature(featureId)
 );
 
---! AFTER THAT NOT READY ---
 ---------------- SCANS ---------------------
 
-CREATE TABLE Target (
+CREATE TABLE Scans (
+  scanId INT PRIMARY KEY,
+  startTime DATETIME,
+  endTime DATETIME,
+  scanType VARCHAR(255),
+  status VARCHAR(50),
+);
+
+CREATE TABLE Targets (
   targetId INT PRIMARY KEY,
-  name VARCHAR(255),
-  address VARCHAR(255),
-  operatingSystem VARCHAR(255),
+  name VARCHAR(100),
+  address VARCHAR(50),
+  operatingSystem VARCHAR(100),
   createdAt DATETIME
 );
 
-CREATE TABLE ScanResult (
+CREATE TABLE AuditLogs (
+  logId INT PRIMARY KEY,
+  scanId INT,
+  time DATETIME,
+  action VARCHAR(50),
+  FOREIGN KEY (scanId) REFERENCES Scan(scanId)
+);
+
+CREATE TABLE ScanTargets (
+  scanId INT PRIMARY KEY,
+  targetId INT,
+  FOREIGN KEY (scanId) REFERENCES Scans(scanId),
+  FOREIGN KEY (targetId) REFERENCES Targets(targetId)
+);
+
+CREATE TABLE UserScans (
+  userId INT,
+  scanId INT,
+  FOREIGN KEY (userId) REFERENCES Users(userId),
+  FOREIGN KEY (scanId) REFERENCES Scans(scanId)
+);
+
+CREATE TABLE ScanResults (
   scanResultId INT PRIMARY KEY,
   scanId INT,
-  pluginId INT,
-  scanId VARCHAR(50),
   status VARCHAR(50),
-  discoveredAt DATETIME,
-  FOREIGN KEY (scanId) REFERENCES ScanTarget(scanId),
-  FOREIGN KEY (pluginId) REFERENCES ScanPlugin(pluginId)
+  createdAt DATETIME,
+  FOREIGN KEY (scanId) REFERENCES Scans(scanId) UNIQUE,
 );
 
-CREATE TABLE ScanVulnerability (
-  scanVulnerabilityId INT PRIMARY KEY,
+CREATE TABLE Reports (
+  reportId INT PRIMARY KEY,
   scanResultId INT,
-  vulnerabilityId INT,
-  FOREIGN KEY (scanResultId) REFERENCES ScanResult(scanResultId)
+  createdAt DATETIME,
+  path VARCHAR(255),
+  format VARCHAR(50),
+  FOREIGN KEY (scanResultId) REFERENCES ScanResults(scanResultId) UNIQUE,
 );
 
-CREATE TABLE Vulnerability (
+CREATE TABLE Vulnerabilities (
   vulnerabilityId INT PRIMARY KEY,
-  scanResultId INT,
   cveName VARCHAR(50),
   description TEXT,
   dangerLevel VARCHAR(50),
   publishedAt DATETIME,
-  FOREIGN KEY (scanResultId) REFERENCES ScanResult(scanResultId)
 );
 
-CREATE TABLE Report (
-  reportId INT PRIMARY KEY,
-  scanId INT,
-  createdAt DATETIME,
-  path VARCHAR(255),
-  format VARCHAR(50)
+CREATE TABLE ScanVulnerabilities (
+  scanResultId INT,
+  vulnerabilityId INT,
+  FOREIGN KEY (scanResultId) REFERENCES ScanResults(scanResultId),
+  FOREIGN KEY (vulnerabilityId) REFERENCES Vulnerabilities(vulnerabilityId)
 );
 
-
-CREATE TABLE ScanTarget (
-  scanId INT PRIMARY KEY,
-  targetId INT,
-  startTime DATETIME,
-  endTime DATETIME,
-  scanType VARCHAR(255),
-  status VARCHAR(50),
-  FOREIGN KEY (targetId) REFERENCES Target(targetId)
-);
-
-CREATE TABLE ScanPlugin (
-  pluginId INT PRIMARY KEY,
-  name VARCHAR(255),
-  version VARCHAR(50),
-  description TEXT
-);
-
-
-
-
-
-CREATE TABLE AuditLog (
-  logId INT PRIMARY KEY,
-  userId INT,
-  scanId INT,
-  time DATETIME,
-  action VARCHAR(50),
-  FOREIGN KEY (userId) REFERENCES User(userId),
-  FOREIGN KEY (scanId) REFERENCES Scan(scanId)
-);
-
-CREATE TABLE Scan (
-  scanId INT PRIMARY KEY,
-  targetId INT,
-  startTime DATETIME,
-  endTime DATETIME,
-  scanType VARCHAR(255),
-  status VARCHAR(50),
-  FOREIGN KEY (targetId) REFERENCES Target(targetId)
-);
-
-CREATE TABLE UserScans (
-  id INT PRIMARY KEY,
-  userId INT,
-  scanId INT,
-  FOREIGN KEY (userId) REFERENCES User(userId),
-  FOREIGN KEY (scanId) REFERENCES Scan(scanId)
-);
-
-CREATE TABLE Plugin (
-  pluginId INT PRIMARY KEY,
-  name VARCHAR(255),
-  version VARCHAR(50),
-  description TEXT
-);
-
-CREATE TABLE Solution (
+CREATE TABLE Solutions (
   solutionId INT PRIMARY KEY,
   description TEXT,
-  solid BOOLEAN
 );
 
-CREATE TABLE VulnerabilitySolution (
-  vulnerabilitySolutionId INT PRIMARY KEY,
+CREATE TABLE VulnerabilitySolutions (
   vulnerabilityId INT,
   solutionId INT,
-  solid BOOLEAN,
-  FOREIGN KEY (vulnerabilityId) REFERENCES Vulnerability(vulnerabilityId),
-  FOREIGN KEY (solutionId) REFERENCES Solution(solutionId)
+  FOREIGN KEY (vulnerabilityId) REFERENCES Vulnerabilities(vulnerabilityId),
+  FOREIGN KEY (solutionId) REFERENCES Solutions(solutionId)
 );
 
+CREATE TABLE Plugins (
+  pluginId INT PRIMARY KEY,
+  name VARCHAR(100),
+  version VARCHAR(50),
+  description TEXT
+);
+
+CREATE TABLE ScanPlugins (
+  pluginId INT,
+  scanId INT,
+  FOREIGN KEY (pluginId) REFERENCES Plugins(pluginId),
+  FOREIGN KEY (scanId) REFERENCES Scans(scanId)
+);
