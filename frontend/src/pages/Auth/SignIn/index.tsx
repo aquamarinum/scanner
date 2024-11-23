@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../../components/Header";
+import Headline from "../../../components/Headline";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { useAuthInput } from "../../../hooks/useAuthInput";
@@ -20,7 +20,7 @@ const SignIn: React.FC<AuthProps> = ({ authRedirect }) => {
 
   return (
     <Form>
-      <Header>Sign In</Header>
+      <Headline>Sign In</Headline>
       <Input
         value={email.inputValue}
         setter={email.setInputValue}

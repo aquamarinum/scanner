@@ -1,11 +1,15 @@
 import React from "react";
 
-type HeaderProps = {
-  children: string;
-};
-
-const Header: React.FC<HeaderProps> = ({ children }) => {
-  return <h2>{children}</h2>;
+const Header = () => {
+  return (
+    <header>
+      <nav>
+        <div></div>
+        <ul></ul>
+        <div></div>
+      </nav>
+    </header>
+  );
 };
 
 export default Header;
