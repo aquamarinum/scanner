@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { ValidationStatuses } from "../services/validation/Validator";
+import {
+  ValidationStatuses,
+  Validator,
+} from "../services/validation/Validator";
 
-export function useAuthInput(
-  initialValue: string,
-  validator: (str: string) => ValidationStatuses
-) {
+export function useAuthInput(initialValue: string, type: "email" | "password") {
   const [inputValue, setValue] = useState(initialValue);
   const [fallbackMessage, setFallbackMessage] = useState(
     ValidationStatuses.CORRECT
   );
 
   const setInputValue = (newValue: string) => {
-    setInputValue(newValue);
+    setValue(newValue);
   };
 
   useEffect(() => {
@@ -19,7 +19,13 @@ export function useAuthInput(
       if (inputValue.length === 0) {
         setFallbackMessage(ValidationStatuses.CORRECT);
       } else {
-        setFallbackMessage(validator(inputValue));
+        const AuthValidator = new Validator(inputValue);
+        if (type === "email") {
+          setFallbackMessage(AuthValidator.matchMail().getStatus());
+        }
+        if (type === "password") {
+          setFallbackMessage(AuthValidator.matchPassword().getStatus());
+        }
       }
     }, 300);
 

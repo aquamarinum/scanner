@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div>
-      {label && <p>{label}</p>}
+      {label !== ValidationStatuses.CORRECT && <p>{label}</p>}
       <input
         type="text"
         value={value}
