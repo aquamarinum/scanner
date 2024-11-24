@@ -15,23 +15,6 @@ import Payment from "./pages/Payment";
 import Report from "./pages/Report";
 import Error from "./pages/Error";
 
-/*
-  error
-
-  home
-  about
-  terms
-  subscriptions
-
-  profile
-  scans
-  scan
-  report
-  ??? plugins -> popup ???
-  options
-
-*/
-
 function App() {
   return (
     <BrowserRouter>

@@ -7,8 +7,6 @@ import { useAuthInput } from "../hooks/useAuthInput";
 import { ValidationStatuses } from "../services/validation/Validator";
 import Underlined from "../components/Underlined";
 
-import styles from "./SignUp.module.scss";
-
 const Register = () => {
   const email = useAuthInput("", "email");
   const password = useAuthInput("", "password");
@@ -20,7 +18,6 @@ const Register = () => {
 
   return (
     <Form>
-      <p className={styles.somecls}>font</p>
       <Headline>Sign Up</Headline>
       <Input
         value={email.inputValue}
