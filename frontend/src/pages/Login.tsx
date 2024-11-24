@@ -1,34 +1,46 @@
-import React, { useState } from "react";
 import Headline from "../components/Headline";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { useAuthInput } from "../hooks/useAuthInput";
-import { ValidationStatuses } from "../services/validation/Validator";
 import Form from "../components/Form";
 import SingleScreen from "../components/SingleScreen";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import Paragraph from "../components/Paragraph";
 import Popup from "../components/Popup";
 import { usePopup } from "../hooks/usePopup";
+import { useSignInOut } from "../hooks/useSignInOut";
+import Loader from "../components/Loader";
+import { useEffect } from "react";
 
 const Login = () => {
   const email = useAuthInput("", "free");
   const password = useAuthInput("", "free");
-
+  const { loading, error, login, resetError } = useSignInOut();
   const { popupState, openPopup, closePopup } = usePopup();
 
+  useEffect(() => {
+    if (error) openPopup();
+  }, [error]);
+
   const onPressLogin = () => {
-    openPopup();
+    login(email.inputValue, password.inputValue);
   };
+
+  const onClosePopup = () => {
+    closePopup();
+    resetError();
+  };
+
+  if (loading) return <Loader />;
 
   return (
     <SingleScreen>
       {popupState && (
         <Popup
           title="Error"
-          content="Lorem ipsum dolor sit amet consequitur msectur ame. Le abbede o nette ra sem unto il."
+          content="Invalid data or bad connection. Check your credentials and internet connection and try again"
           buttons={
-            <Button active onPress={() => closePopup()}>
+            <Button active onPress={onClosePopup}>
               OK
             </Button>
           }

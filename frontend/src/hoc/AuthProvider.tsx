@@ -1,32 +1,35 @@
 import React, { createContext, useState } from "react";
 import { UserType } from "../@types/UserType";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 type AuthProviderProps = {
   children: JSX.Element;
 };
 
 type AuthContextProps = {
-  user: UserType | null;
-  signin: (newUser: UserType, callback: () => void) => void;
-  signout: (callback: () => void) => void;
+  authToken: string | null;
+  signin: (newToken: string) => void;
+  signout: () => void;
 };
 
-export const AuthContext = createContext<AuthContextProps | null>(null);
+export const AuthContext = createContext<AuthContextProps>({
+  authToken: null,
+  signin: (str: string) => {},
+  signout: () => {},
+});
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<UserType | null>(null);
+  const [authToken, setAuthToken] = useLocalStorage<string>("user");
 
-  const signin = (newUser: UserType, callback: () => void) => {
-    setUser(newUser);
-    callback();
+  const signin = (newAuthToken: string) => {
+    setAuthToken(newAuthToken);
   };
 
-  const signout = (callback: () => void) => {
-    setUser(null);
-    callback();
+  const signout = () => {
+    setAuthToken(null);
   };
 
-  const value = { user, signin, signout };
+  const value = { authToken, signin, signout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

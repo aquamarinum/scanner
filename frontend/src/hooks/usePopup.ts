@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
-export function usePopup() {
-  const [popupState, setPopupState] = useState(false);
+export function usePopup(initialState: boolean = false) {
+  const [popupState, setPopupState] = useState(initialState);
 
   const openPopup = () => {
     setPopupState(true);

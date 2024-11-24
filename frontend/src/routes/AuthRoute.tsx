@@ -3,8 +3,8 @@ import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router-dom";
 
 const AuthRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
-  const isAuth = Boolean(useAuth()?.user);
-  return isAuth ? <Navigate to="/" /> : children;
+  const { authToken } = useAuth();
+  return authToken ? <Navigate to="/" /> : children;
 };
 
 export default AuthRoute;
