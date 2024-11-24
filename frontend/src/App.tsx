@@ -8,7 +8,7 @@ import AuthRoute from "./routes/AuthRoute";
 import Register from "./pages/Register";
 import Scan from "./pages/Scan";
 import PrivateRoute from "./routes/PrivateRoute";
-import Profile from "./pages/profile";
+import Profile from "./pages/Profile";
 import Categories from "./pages/Categories";
 import Options from "./pages/Options";
 import Payment from "./pages/Payment";
