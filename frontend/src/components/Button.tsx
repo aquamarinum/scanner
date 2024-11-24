@@ -7,10 +7,11 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({ children, active, onPress }) => {
+  if (!active) return <div className="button-disabled">{children}</div>;
   return (
-    <div onClick={onPress}>
-      <div>{children}</div>
-    </div>
+    <button className="button" onClick={onPress}>
+      {children}
+    </button>
   );
 };
 

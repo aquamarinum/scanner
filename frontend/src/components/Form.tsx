@@ -5,7 +5,7 @@ type FormProps = {
 };
 
 const Form: React.FC<FormProps> = ({ children }) => {
-  return <div>{children}</div>;
+  return <div className="form">{children}</div>;
 };
 
 export default Form;

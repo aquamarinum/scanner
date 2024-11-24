@@ -1,5 +1,5 @@
 import React from "react";
-import Subtitle from "../Subtitle";
+import Subtitle from "../Paragraph";
 
 type ScanCardProps = {
   title: string;

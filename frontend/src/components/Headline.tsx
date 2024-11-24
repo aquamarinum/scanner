@@ -5,7 +5,7 @@ type HeadlineProps = {
 };
 
 const Headline: React.FC<HeadlineProps> = ({ children }) => {
-  return <h2>{children}</h2>;
+  return <h2 className="headline">{children}</h2>;
 };
 
 export default Headline;

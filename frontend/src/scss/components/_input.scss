@@ -1,0 +1,38 @@
+@import "../variables";
+
+.input-container {
+  position: relative;
+
+  width: 100%;
+
+  margin: 10px 0;
+}
+
+.label {
+  position: absolute;
+  top: -20px;
+  left: 0;
+
+  font-family: "Ubuntu";
+  font-weight: 400;
+  font-size: $textMini;
+  color: $red;
+}
+
+.input {
+  width: 100%;
+
+  padding: 15px 30px;
+
+  font-family: "Ubuntu";
+  font-weight: 500;
+  font-size: $textNormal;
+  color: $greyDark;
+
+  border: 4px solid $greyLight;
+  border-radius: 10px;
+}
+
+input::placeholder {
+  color: $greyLight;
+}

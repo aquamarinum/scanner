@@ -4,7 +4,10 @@ import {
   Validator,
 } from "../services/validation/Validator";
 
-export function useAuthInput(initialValue: string, type: "email" | "password") {
+export function useAuthInput(
+  initialValue: string,
+  type: "email" | "password" | "free"
+) {
   const [inputValue, setValue] = useState(initialValue);
   const [fallbackMessage, setFallbackMessage] = useState(
     ValidationStatuses.CORRECT
@@ -25,6 +28,8 @@ export function useAuthInput(initialValue: string, type: "email" | "password") {
         }
         if (type === "password") {
           setFallbackMessage(AuthValidator.matchPassword().getStatus());
+        } else {
+          setFallbackMessage(ValidationStatuses.CORRECT);
         }
       }
     }, 300);

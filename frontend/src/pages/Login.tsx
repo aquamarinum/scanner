@@ -5,42 +5,46 @@ import Button from "../components/Button";
 import { useAuthInput } from "../hooks/useAuthInput";
 import { ValidationStatuses } from "../services/validation/Validator";
 import Form from "../components/Form";
-import Underlined from "../components/Underlined";
+import SingleScreen from "../components/SingleScreen";
+import { Link } from "react-router-dom";
+import Paragraph from "../components/Paragraph";
 
 const Login = () => {
-  const email = useAuthInput("", "email");
-  const password = useAuthInput("", "password");
+  const email = useAuthInput("", "free");
+  const password = useAuthInput("", "free");
 
   const onPressLogin = () => {
     console.log("pressed");
   };
 
   return (
-    <Form>
-      <Headline>Sign In</Headline>
-      <Input
-        value={email.inputValue}
-        setter={email.setInputValue}
-        label={email.fallbackMessage}
-        placeholder={"email"}
-      />
-      <Input
-        value={password.inputValue}
-        setter={password.setInputValue}
-        label={password.fallbackMessage}
-        placeholder="password"
-      />
-      <Button
-        active={
-          email.fallbackMessage === ValidationStatuses.CORRECT &&
-          password.fallbackMessage === ValidationStatuses.CORRECT
-        }
-        onPress={onPressLogin}
-      >
-        Login
-      </Button>
-      <Underlined onClick={() => {}}>Or create a new account</Underlined>
-    </Form>
+    <SingleScreen>
+      <Form>
+        <Headline>Sign In</Headline>
+        <Input
+          value={email.inputValue}
+          setter={email.setInputValue}
+          label={email.fallbackMessage}
+          placeholder={"email"}
+        />
+        <Input
+          value={password.inputValue}
+          setter={password.setInputValue}
+          label={password.fallbackMessage}
+          placeholder="password"
+          type="password"
+        />
+        <Button
+          active={email.inputValue.length > 0 && password.inputValue.length > 0}
+          onPress={onPressLogin}
+        >
+          Login
+        </Button>
+        <Paragraph>
+          Or create a <Link to="/register">new account</Link>
+        </Paragraph>
+      </Form>
+    </SingleScreen>
   );
 };
 

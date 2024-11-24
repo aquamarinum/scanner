@@ -1,14 +1,14 @@
 export enum ValidationStatuses {
-  CORRECT,
-  INCORRECT,
-  BADMAIL,
-  BADPASS,
-  EMPTY,
-  NOTEMPTY,
-  TOOLONG,
-  TOOSHORT,
-  NOTLATIN,
-  NOTNUMBER,
+  CORRECT = "CORRECT",
+  INCORRECT = "INCORRECT VALUE",
+  BADMAIL = "bad email",
+  BADPASS = "bad password",
+  EMPTY = "EMPTY VALUE",
+  NOTEMPTY = "NOT EMPTY",
+  TOOLONG = "too much length",
+  TOOSHORT = "not enough length",
+  NOTLATIN = "not latin symbols",
+  NOTNUMBER = "not number symbols",
 }
 
 export class Validator {
