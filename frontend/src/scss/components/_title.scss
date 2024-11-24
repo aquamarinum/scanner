@@ -1,0 +1,11 @@
+@import "../variables";
+
+.title {
+  margin: 20px 0;
+
+  text-align: center;
+  font-family: "Ubuntu";
+  font-weight: 700;
+  font-size: $textLarge;
+  color: $black;
+}

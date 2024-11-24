@@ -36,3 +36,7 @@
 input::placeholder {
   color: $greyLight;
 }
+
+input:focus {
+  border-color: $aquamarine;
+}

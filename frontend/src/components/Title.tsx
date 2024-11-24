@@ -5,7 +5,7 @@ type TitleProps = {
 };
 
 const Title: React.FC<TitleProps> = ({ children }) => {
-  return <h6>{children}</h6>;
+  return <h4 className="title">{children}</h4>;
 };
 
 export default Title;

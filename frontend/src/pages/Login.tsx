@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Headline from "../components/Headline";
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -8,17 +8,32 @@ import Form from "../components/Form";
 import SingleScreen from "../components/SingleScreen";
 import { Link } from "react-router-dom";
 import Paragraph from "../components/Paragraph";
+import Popup from "../components/Popup";
+import { usePopup } from "../hooks/usePopup";
 
 const Login = () => {
   const email = useAuthInput("", "free");
   const password = useAuthInput("", "free");
 
+  const { popupState, openPopup, closePopup } = usePopup();
+
   const onPressLogin = () => {
-    console.log("pressed");
+    openPopup();
   };
 
   return (
     <SingleScreen>
+      {popupState && (
+        <Popup
+          title="Error"
+          content="Lorem ipsum dolor sit amet consequitur msectur ame. Le abbede o nette ra sem unto il."
+          buttons={
+            <Button active onPress={() => closePopup()}>
+              OK
+            </Button>
+          }
+        />
+      )}
       <Form>
         <Headline>Sign In</Headline>
         <Input

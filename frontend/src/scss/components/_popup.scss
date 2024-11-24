@@ -1,0 +1,66 @@
+@import "../variables";
+
+.popup-overlay {
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  animation: fadein 0.5s linear;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #00000080;
+  backdrop-filter: blur(10px);
+}
+
+.popup-message {
+  animation: zoomin 0.3s linear;
+
+  padding: 20px;
+
+  width: 75%;
+  max-width: 560px;
+
+  text-align: center;
+
+  background: $white;
+  border-radius: 10px;
+
+  .inactive {
+    animation: zoomout 0.5s linear;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    background: transparent;
+  }
+  100% {
+    background: #00000080;
+  }
+}
+
+@keyframes zoomin {
+  0% {
+    transform: scale(0.8) translateY(100%);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes zoomout {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    transform: scale(0.8) translateY(100%);
+  }
+}
