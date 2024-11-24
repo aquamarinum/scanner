@@ -27,7 +27,9 @@ export function useAuthInput(
           setFallbackMessage(AuthValidator.matchMail().getStatus());
         }
         if (type === "password") {
-          setFallbackMessage(AuthValidator.matchPassword().getStatus());
+          setFallbackMessage(
+            AuthValidator.minLength(4).maxLength(16).matchPassword().getStatus()
+          );
         } else {
           setFallbackMessage(ValidationStatuses.CORRECT);
         }

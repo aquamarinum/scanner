@@ -46,8 +46,8 @@ const Register = () => {
           active={
             email.fallbackMessage === ValidationStatuses.CORRECT &&
             password.fallbackMessage === ValidationStatuses.CORRECT &&
-            password.inputValue.length === passwordConfirm.inputValue.length &&
-            password.inputValue.length !== 0
+            password.inputValue.length !== 0 &&
+            password.inputValue === passwordConfirm.inputValue
           }
           onPress={onPressLogin}
         >
