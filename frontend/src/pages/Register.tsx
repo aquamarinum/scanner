@@ -1,14 +1,15 @@
 import React from "react";
-import Form from "../../../components/Form";
-import Headline from "../../../components/Headline";
-import Input from "../../../components/Input";
-import Button from "../../../components/Button";
-import { useAuthInput } from "../../../hooks/useAuthInput";
-import { ValidationStatuses } from "../../../services/validation/Validator";
-import Underlined from "../../../components/Underlined";
-import { AuthProps } from "..";
+import Form from "../components/Form";
+import Headline from "../components/Headline";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import { useAuthInput } from "../hooks/useAuthInput";
+import { ValidationStatuses } from "../services/validation/Validator";
+import Underlined from "../components/Underlined";
 
-const SignUp: React.FC<AuthProps> = ({ authRedirect }) => {
+import styles from "./SignUp.module.scss";
+
+const Register = () => {
   const email = useAuthInput("", "email");
   const password = useAuthInput("", "password");
   const passwordConfirm = useAuthInput("", "password");
@@ -19,6 +20,7 @@ const SignUp: React.FC<AuthProps> = ({ authRedirect }) => {
 
   return (
     <Form>
+      <p className={styles.somecls}>font</p>
       <Headline>Sign Up</Headline>
       <Input
         value={email.inputValue}
@@ -49,11 +51,9 @@ const SignUp: React.FC<AuthProps> = ({ authRedirect }) => {
       >
         Create an account
       </Button>
-      <Underlined onClick={() => authRedirect()}>
-        Or return to sign in
-      </Underlined>
+      <Underlined onClick={() => {}}>Or return to sign in</Underlined>
     </Form>
   );
 };
 
-export default SignUp;
+export default Register;

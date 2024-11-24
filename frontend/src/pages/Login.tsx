@@ -1,16 +1,13 @@
 import React from "react";
-import Headline from "../../../components/Headline";
-import Input from "../../../components/Input";
-import Button from "../../../components/Button";
-import { useAuthInput } from "../../../hooks/useAuthInput";
-import { ValidationStatuses } from "../../../services/validation/Validator";
-import Form from "../../../components/Form";
-import Subtitle from "../../../components/Subtitle";
-import { Link } from "react-router-dom";
-import Underlined from "../../../components/Underlined";
-import { AuthProps } from "..";
+import Headline from "../components/Headline";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import { useAuthInput } from "../hooks/useAuthInput";
+import { ValidationStatuses } from "../services/validation/Validator";
+import Form from "../components/Form";
+import Underlined from "../components/Underlined";
 
-const SignIn: React.FC<AuthProps> = ({ authRedirect }) => {
+const Login = () => {
   const email = useAuthInput("", "email");
   const password = useAuthInput("", "password");
 
@@ -42,11 +39,9 @@ const SignIn: React.FC<AuthProps> = ({ authRedirect }) => {
       >
         Login
       </Button>
-      <Underlined onClick={() => authRedirect()}>
-        Or create a new account
-      </Underlined>
+      <Underlined onClick={() => {}}>Or create a new account</Underlined>
     </Form>
   );
 };
 
-export default SignIn;
+export default Login;
