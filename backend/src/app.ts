@@ -1,5 +1,5 @@
-const express = require("express");
-const db = require("./db");
+import express from "express";
+import pool from "./db";
 
 const app = express();
 const port = 3001;
@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test", (req, res) => {
-  db.query("SELECT * FROM Test", (err, results) => {
+  pool.query("SELECT * FROM Test", (err, results) => {
     if (err) {
       return res.status(500).send(err);
     }
