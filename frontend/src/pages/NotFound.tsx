@@ -4,12 +4,13 @@ import Headline from "../components/Headline";
 import Paragraph from "../components/Paragraph";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import Centralized from "../components/Centralized";
 
 const NotFound = () => {
   const navigate = useNavigate();
   return (
     <SingleScreen>
-      <div className="error-container">
+      <Centralized>
         <Headline>NOT FOUND</Headline>
         <div className="error-text-container">
           <Paragraph>
@@ -17,12 +18,12 @@ const NotFound = () => {
             you have no connection to the internet. Check the URL and try again.
           </Paragraph>
         </div>
-        <div className="error-button-container">
+        <div className="button-container">
           <Button active onPress={() => navigate("/")}>
             Go Back
           </Button>
         </div>
-      </div>
+      </Centralized>
     </SingleScreen>
   );
 };

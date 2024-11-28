@@ -3,21 +3,26 @@
 @import "variables";
 @import "./components/all";
 
-.error-container {
+.centralized {
   padding: 20px;
 
   width: 75%;
-  max-width: 640px;
+  max-width: 1024px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   text-align: center;
 
-  .error-text-container {
-    margin: 40px 0;
+  .button-container {
+    width: 30%;
   }
+}
 
-  .error-button-container {
-    margin: 0 auto;
-
-    width: 50%;
+.home-logo-container {
+  svg {
+    width: 128px;
+    height: 128px;
   }
 }
