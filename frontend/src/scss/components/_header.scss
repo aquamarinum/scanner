@@ -1,34 +1,45 @@
 @import "../variables";
 
-nav {
+header {
   position: sticky;
   left: 0;
   top: 0;
   z-index: 101;
 
-  padding: 16px;
-
   width: 100%;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 
   border-bottom: 1px solid $greyLight;
   background: $white;
 
-  svg {
-    width: 24px;
-    height: 24px;
-  }
+  nav {
+    padding: 0 16px;
 
-  ul {
+    width: 100%;
+    max-width: 1440px;
+
     display: flex;
-    li {
-      margin: 0 30px;
+    justify-content: space-between;
+    align-items: center;
 
-      a {
-        &.active svg {
-          fill: $primeColor;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    ul {
+      margin: 16px 0;
+
+      display: flex;
+      li {
+        margin: 0 30px;
+
+        a {
+          &.active svg {
+            fill: $primeColor;
+          }
         }
       }
     }
