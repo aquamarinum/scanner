@@ -1,0 +1,50 @@
+@import "../variables";
+
+.loader-screen {
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: $white;
+}
+
+.loader {
+  width: 100px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 8px solid #0000;
+  border-radius: 50%;
+  border-color: #ccc #0000;
+  animation: l16 1s infinite linear;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 4px;
+  border: inherit;
+  border-radius: 50%;
+}
+.loader::before {
+  border-color: #f03355 #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+.loader::after {
+  margin: 16px;
+}
+@keyframes l16 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
