@@ -20,6 +20,7 @@ import Error from "./pages/Error";
 
 import "./scss/app.scss";
 import Terms from "./pages/Terms";
+import AuthLayout from "./routes/AuthLayout";
 
 function App() {
   return (
@@ -72,22 +73,24 @@ function App() {
                 }
               />
             </Route>
-            <Route
-              path="/login"
-              element={
-                <AuthRoute>
-                  <Login />
-                </AuthRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <AuthRoute>
-                  <Register />
-                </AuthRoute>
-              }
-            />
+            <Route element={<AuthLayout />}>
+              <Route
+                path="/login"
+                element={
+                  <AuthRoute>
+                    <Login />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <AuthRoute>
+                    <Register />
+                  </AuthRoute>
+                }
+              />
+            </Route>
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>

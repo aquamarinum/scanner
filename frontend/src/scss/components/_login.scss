@@ -10,3 +10,20 @@
   flex-direction: column;
   align-items: center;
 }
+
+.goback {
+  position: fixed;
+  left: 2vw;
+  top: 2vw;
+  z-index: 101;
+
+  padding: 10px 12px;
+
+  border-radius: 50%;
+  background: $greyLight;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
