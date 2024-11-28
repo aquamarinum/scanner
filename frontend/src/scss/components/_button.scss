@@ -19,8 +19,8 @@
 
   border: none;
   border-radius: 10px;
-  background: $aquamarine;
-  box-shadow: 0 6px 1px #00ba70;
+  background: $graphite;
+  box-shadow: 0 6px 1px $black;
 }
 
 .button:hover {
@@ -30,7 +30,7 @@
 .button:active {
   box-shadow: none;
   transform: translateY(6px);
-  background: #00ba70;
+  background: $black;
 }
 
 .button-disabled {
@@ -52,6 +52,6 @@
 
   border: none;
   border-radius: 10px;
-  background: $aquamarine;
-  box-shadow: 0 6px 1px #00ba70;
+  background: $graphite;
+  box-shadow: 0 6px 1px $black;
 }
