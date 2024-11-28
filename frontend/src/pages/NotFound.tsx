@@ -5,6 +5,7 @@ import Paragraph from "../components/Paragraph";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import Centralized from "../components/Centralized";
+import Subtitle from "../components/Subtitle";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -13,10 +14,10 @@ const NotFound = () => {
       <Centralized>
         <Headline>NOT FOUND</Headline>
         <div className="error-text-container">
-          <Paragraph>
+          <Subtitle>
             Awkward!!! The resource you looking for does not exist or probably
             you have no connection to the internet. Check the URL and try again.
-          </Paragraph>
+          </Subtitle>
         </div>
         <div className="button-container">
           <Button active onPress={() => navigate("/")}>
