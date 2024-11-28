@@ -1,0 +1,36 @@
+@import "../variables";
+
+nav {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 101;
+
+  padding: 16px;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid $greyLight;
+  background: $white;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  ul {
+    display: flex;
+    li {
+      margin: 0 30px;
+
+      a {
+        &.active svg {
+          fill: $aquamarine;
+        }
+      }
+    }
+  }
+}

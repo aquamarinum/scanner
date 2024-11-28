@@ -1,19 +1,12 @@
 import React from "react";
-import { useSignInOut } from "../hooks/useSignInOut";
-import { useAuth } from "../hooks/useAuth";
+import SingleScreen from "../components/SingleScreen";
+import Headline from "../components/Headline";
 
 const Home = () => {
-  const { logout } = useSignInOut();
-  const { signout } = useAuth();
   return (
-    <button
-      onClick={() => {
-        logout();
-        signout();
-      }}
-    >
-      logout
-    </button>
+    <SingleScreen>
+      <Headline>Home</Headline>
+    </SingleScreen>
   );
 };
 

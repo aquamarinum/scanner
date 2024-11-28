@@ -2,12 +2,12 @@ import React from "react";
 import SingleScreen from "../components/SingleScreen";
 import Headline from "../components/Headline";
 
-const Categories = () => {
+const Terms = () => {
   return (
     <SingleScreen>
-      <Headline>Categories</Headline>
+      <Headline>Terms</Headline>
     </SingleScreen>
   );
 };
 
-export default Categories;
+export default Terms;

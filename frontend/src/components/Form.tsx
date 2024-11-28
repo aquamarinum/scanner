@@ -5,7 +5,11 @@ type FormProps = {
 };
 
 const Form: React.FC<FormProps> = ({ children }) => {
-  return <div className="form">{children}</div>;
+  return (
+    <form action="submit" autoComplete="on" noValidate className="form">
+      {children}
+    </form>
+  );
 };
 
 export default Form;

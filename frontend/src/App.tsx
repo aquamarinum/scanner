@@ -19,6 +19,7 @@ import Report from "./pages/Report";
 import Error from "./pages/Error";
 
 import "./scss/app.scss";
+import Terms from "./pages/Terms";
 
 function App() {
   return (
@@ -44,14 +45,8 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route
-                path="/categories"
-                element={
-                  <PrivateRoute>
-                    <Categories />
-                  </PrivateRoute>
-                }
-              />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/terms" element={<Terms />} />
               <Route
                 path="/options"
                 element={
