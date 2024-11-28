@@ -2,3 +2,22 @@
 @import "./libs/normalize";
 @import "variables";
 @import "./components/all";
+
+.error-container {
+  padding: 20px;
+
+  width: 75%;
+  max-width: 640px;
+
+  text-align: center;
+
+  .error-text-container {
+    margin: 40px 0;
+  }
+
+  .error-button-container {
+    margin: 0 auto;
+
+    width: 50%;
+  }
+}

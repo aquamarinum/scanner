@@ -16,7 +16,7 @@ import Categories from "./pages/Categories";
 import Options from "./pages/Options";
 import Payment from "./pages/Payment";
 import Report from "./pages/Report";
-import Error from "./pages/Error";
+import NotFound from "./pages/NotFound";
 
 import "./scss/app.scss";
 import Terms from "./pages/Terms";
@@ -91,7 +91,7 @@ function App() {
                 }
               />
             </Route>
-            <Route path="*" element={<Error />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </Provider>
