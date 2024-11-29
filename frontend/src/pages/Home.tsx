@@ -19,6 +19,7 @@ import {
 } from "../components/Icons";
 import { useFetch } from "../hooks/useFetch";
 import Loader from "../components/Loader";
+import ButtonWrapper from "../components/ButtonWrapper";
 
 const aboutFeaturesArray: { icon: JSX.Element; text: string }[] = [
   { icon: <MicrochipIcon />, text: "Automated Scanning" },
@@ -48,11 +49,11 @@ const Home = () => {
             scanning and receive a detailed report on possible vulnerabilities
             and how to solve them
           </Subtitle>
-          <div className="home button-container">
+          <ButtonWrapper>
             <Button active onPress={() => navigate("/categories")}>
               Get started
             </Button>
-          </div>
+          </ButtonWrapper>
         </Centralized>
       </SingleScreen>
       <Wrapper>

@@ -18,23 +18,23 @@
 
   background: #00000080;
   backdrop-filter: blur(10px);
-}
 
-.popup-message {
-  animation: zoomin 0.3s linear;
+  .popup-message {
+    animation: zoomin 0.3s linear;
 
-  padding: 20px;
+    padding: 20px;
 
-  width: 75%;
-  max-width: 560px;
+    width: 75%;
+    max-width: 560px;
 
-  text-align: center;
+    text-align: center;
 
-  background: $white;
-  border-radius: 10px;
+    background: $white;
+    border-radius: 10px;
 
-  .inactive {
-    animation: zoomout 0.5s linear;
+    .inactive {
+      animation: zoomout 0.5s linear;
+    }
   }
 }
 

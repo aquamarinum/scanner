@@ -1,6 +1,8 @@
 import React, { ReactNode, useRef } from "react";
 import Title from "./Title";
 import Paragraph from "./Paragraph";
+import Subtitle from "./Subtitle";
+import Headline from "./Headline";
 
 type PopupProps = {
   title: string;
@@ -12,8 +14,8 @@ const Popup: React.FC<PopupProps> = ({ title, content, buttons }) => {
   return (
     <div className="popup-overlay">
       <div className="popup-message">
-        <Title>{title}</Title>
-        <Paragraph>{content}</Paragraph>
+        <Headline>{title}</Headline>
+        <Subtitle>{content}</Subtitle>
         {buttons}
       </div>
     </div>

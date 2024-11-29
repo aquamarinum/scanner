@@ -1,11 +1,11 @@
 import React from "react";
 import SingleScreen from "../components/SingleScreen";
 import Headline from "../components/Headline";
-import Paragraph from "../components/Paragraph";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import Centralized from "../components/Centralized";
 import Subtitle from "../components/Subtitle";
+import ButtonWrapper from "../components/ButtonWrapper";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -19,11 +19,11 @@ const NotFound = () => {
             you have no connection to the internet. Check the URL and try again.
           </Subtitle>
         </div>
-        <div className="button-container">
+        <ButtonWrapper>
           <Button active onPress={() => navigate(-1)}>
             Go Back
           </Button>
-        </div>
+        </ButtonWrapper>
       </Centralized>
     </SingleScreen>
   );
