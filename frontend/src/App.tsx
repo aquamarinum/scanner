@@ -38,15 +38,17 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route
-                path="/scan"
-                element={
-                  <PrivateRoute>
-                    <Scan />
-                  </PrivateRoute>
-                }
-              />
-              <Route path="/categories" element={<Categories />} />
+              <Route path="/categories">
+                <Route index element={<Categories />} />
+                <Route
+                  path=":scanid"
+                  element={
+                    <PrivateRoute>
+                      <Scan />
+                    </PrivateRoute>
+                  }
+                />
+              </Route>
               <Route path="/terms" element={<Terms />} />
               <Route
                 path="/options"

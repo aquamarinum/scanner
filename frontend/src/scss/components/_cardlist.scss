@@ -4,7 +4,6 @@
 
   width: 100%;
 
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }

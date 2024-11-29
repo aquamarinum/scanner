@@ -3,7 +3,7 @@ import { fetchData } from "../utils/fetchData";
 
 export function useFetch<T>(
   url: string,
-  deps: Array<string | number>,
+  deps: Array<string | number> = [],
   headers: any = {}
 ) {
   const [loading, setLoading] = useState(true);
