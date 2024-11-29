@@ -1,22 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { usePopup } from "../hooks/usePopup";
+import { useSignInOut } from "../hooks/useSignInOut";
+
 import Form from "../components/Form";
 import Headline from "../components/Headline";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { useAuthInput } from "../hooks/useAuthInput";
-import { ValidationStatuses } from "../services/validation/Validator";
 import Paragrapgh from "../components/Paragraph";
 import SingleScreen from "../components/SingleScreen";
-import { Link } from "react-router-dom";
-import { useSignInOut } from "../hooks/useSignInOut";
 import Loader from "../components/Loader";
-import { usePopup } from "../hooks/usePopup";
 import Popup from "../components/Popup";
+import { useValidation } from "../hooks/useValidation";
 
 const Register = () => {
-  const email = useAuthInput("", "email");
-  const password = useAuthInput("", "password");
-  const passwordConfirm = useAuthInput("", "password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [emailValidator] = useValidation("email", email);
+  const [passValidator] = useValidation("password", password);
+
   const { loading, error, register, resetError } = useSignInOut();
   const { popupState, openPopup, closePopup } = usePopup();
 
@@ -25,7 +29,7 @@ const Register = () => {
   }, [error]);
 
   const onPressLogin = () => {
-    register(email.inputValue, password.inputValue);
+    register(email, password);
   };
 
   const onClosePopup = () => {
@@ -51,31 +55,31 @@ const Register = () => {
       <Form>
         <Headline>Sign Up</Headline>
         <Input
-          value={email.inputValue}
-          setter={email.setInputValue}
-          label={email.fallbackMessage}
+          value={email}
+          setter={setEmail}
+          label={emailValidator}
           placeholder={"email"}
         />
         <Input
-          value={password.inputValue}
-          setter={password.setInputValue}
-          label={password.fallbackMessage}
+          value={password}
+          setter={setPassword}
+          label={passValidator}
           placeholder="password"
           type="password"
         />
         <Input
-          value={passwordConfirm.inputValue}
-          setter={passwordConfirm.setInputValue}
-          label={passwordConfirm.fallbackMessage}
+          value={confirmPassword}
+          setter={setConfirmPassword}
+          label={""}
           placeholder="confirm password"
           type="password"
         />
         <Button
           active={
-            email.fallbackMessage === ValidationStatuses.CORRECT &&
-            password.fallbackMessage === ValidationStatuses.CORRECT &&
-            password.inputValue.length !== 0 &&
-            password.inputValue === passwordConfirm.inputValue
+            password.length !== 0 &&
+            !emailValidator &&
+            !passValidator &&
+            password === confirmPassword
           }
           onPress={onPressLogin}
         >

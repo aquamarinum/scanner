@@ -1,7 +1,6 @@
 import Headline from "../components/Headline";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { useAuthInput } from "../hooks/useAuthInput";
 import Form from "../components/Form";
 import SingleScreen from "../components/SingleScreen";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
@@ -10,20 +9,20 @@ import Popup from "../components/Popup";
 import { usePopup } from "../hooks/usePopup";
 import { useSignInOut } from "../hooks/useSignInOut";
 import Loader from "../components/Loader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
-  const email = useAuthInput("", "free");
-  const password = useAuthInput("", "free");
   const { loading, error, login, resetError } = useSignInOut();
   const { popupState, openPopup, closePopup } = usePopup();
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     if (error) openPopup();
   }, [error]);
 
   const onPressLogin = () => {
-    login(email.inputValue, password.inputValue);
+    login(email, password);
   };
 
   const onClosePopup = () => {
@@ -48,21 +47,15 @@ const Login = () => {
       )}
       <Form>
         <Headline>Sign In</Headline>
+        <Input value={email} setter={setEmail} placeholder={"email"} />
         <Input
-          value={email.inputValue}
-          setter={email.setInputValue}
-          label={email.fallbackMessage}
-          placeholder={"email"}
-        />
-        <Input
-          value={password.inputValue}
-          setter={password.setInputValue}
-          label={password.fallbackMessage}
+          value={password}
+          setter={setPassword}
           placeholder="password"
           type="password"
         />
         <Button
-          active={email.inputValue.length > 0 && password.inputValue.length > 0}
+          active={email.length > 0 && password.length > 0}
           onPress={onPressLogin}
         >
           Login

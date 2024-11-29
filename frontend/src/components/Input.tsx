@@ -1,11 +1,10 @@
 import React from "react";
-import { ValidationStatuses } from "../services/validation/Validator";
 
 type InputProps = {
   value: string;
   setter: (text: string) => void;
   placeholder: string;
-  label: ValidationStatuses;
+  label?: string | null;
   type?: React.HTMLInputTypeAttribute;
 };
 
@@ -13,12 +12,12 @@ const Input: React.FC<InputProps> = ({
   value,
   setter,
   placeholder,
-  label = "",
+  label = null,
   type,
 }) => {
   return (
     <div className="input-container">
-      {label !== ValidationStatuses.CORRECT && <p className="label">{label}</p>}
+      {label && <p className="label">{label}</p>}
       <input
         className="input"
         type={type}
