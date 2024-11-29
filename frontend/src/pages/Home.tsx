@@ -57,7 +57,6 @@ const Home = () => {
         </Centralized>
       </SingleScreen>
       <Wrapper>
-        <Headline>About</Headline>
         <Title>Introduction</Title>
         <Paragraph>
           In today's digital world, the security of web applications is
