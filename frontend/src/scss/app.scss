@@ -35,3 +35,13 @@
 .button-wrapper {
   width: 30%;
 }
+
+.scan-status-bar {
+  margin: 40px 0;
+
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 3fr 2fr 3fr;
+  column-gap: 10px;
+}

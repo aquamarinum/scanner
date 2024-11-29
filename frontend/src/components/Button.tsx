@@ -2,11 +2,15 @@ import React, { ReactNode } from "react";
 
 type ButtonProps = {
   children: string | ReactNode;
-  active: boolean;
+  active?: boolean;
   onPress: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ children, active, onPress }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onPress,
+  active = true,
+}) => {
   if (!active) return <div className="button-disabled">{children}</div>;
   return (
     <button className="button" onClick={onPress}>

@@ -1,0 +1,31 @@
+@import "../variables";
+
+.tuple-list {
+  padding: 10px;
+
+  width: 100%;
+
+  li {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+    .key,
+    .value {
+      line-height: 50px;
+      font-family: "Ubuntu";
+      font-weight: 400;
+      font-size: $textNormal;
+    }
+
+    .key {
+      text-align: left;
+      color: $black;
+    }
+    .value {
+      text-align: right;
+      color: $greyDark;
+    }
+  }
+}
