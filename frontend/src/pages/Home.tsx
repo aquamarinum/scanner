@@ -17,6 +17,8 @@ import {
   MicrochipIcon,
   UserInterfaceIcon,
 } from "../components/Icons";
+import { useFetch } from "../hooks/useFetch";
+import Loader from "../components/Loader";
 
 const aboutFeaturesArray: { icon: JSX.Element; text: string }[] = [
   { icon: <MicrochipIcon />, text: "Automated Scanning" },
@@ -27,7 +29,11 @@ const aboutFeaturesArray: { icon: JSX.Element; text: string }[] = [
 ];
 
 const Home = () => {
+  const { data, loading, error } = useFetch("home URL");
   const navigate = useNavigate();
+
+  if (loading) return <Loader />;
+
   return (
     <>
       <SingleScreen>
