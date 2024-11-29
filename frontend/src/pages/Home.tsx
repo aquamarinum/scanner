@@ -8,8 +8,23 @@ import Centralized from "../components/Centralized";
 import { useNavigate } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
 import Title from "../components/Title";
-import CardList from "../components/CardList";
 import Subtitle from "../components/Subtitle";
+import Card from "../components/Card";
+import {
+  DatabaseIcon,
+  FileIcon,
+  GitIcon,
+  MicrochipIcon,
+  UserInterfaceIcon,
+} from "../components/Icons";
+
+const aboutFeaturesArray: { icon: JSX.Element; text: string }[] = [
+  { icon: <MicrochipIcon />, text: "Automated Scanning" },
+  { icon: <DatabaseIcon />, text: "Vulnerability Database" },
+  { icon: <FileIcon />, text: "Detailed Reports" },
+  { icon: <UserInterfaceIcon />, text: "User-Friendly Interface" },
+  { icon: <GitIcon />, text: "Open-Source" },
+];
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,7 +35,7 @@ const Home = () => {
           <div className="home-logo-container">
             <LogoIcon />
           </div>
-          <Headline>Home</Headline>
+          <Headline>AVSS</Headline>
           <Subtitle>
             Welcome to the Automated System for Searching for Vulnerabilities in
             Web Applications. The system engine allows you to perform real-time
@@ -51,7 +66,16 @@ const Home = () => {
           software without worrying about security.
         </Paragraph>
         <Title>What We Offer</Title>
-        <CardList data={[...new Array(5)]} />
+        <div className="card-list">
+          {aboutFeaturesArray.map((card) => (
+            <Card
+              icon={card.icon}
+              text={card.text}
+              key={card.text}
+              onClick={() => {}}
+            />
+          ))}
+        </div>
         <Title>Why It Matters</Title>
         <Paragraph>
           With the rise of cyber threats and the constant emergence of new

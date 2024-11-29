@@ -1,16 +1,15 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import LogoIcon from "./Icons/LogoIcon";
-import HomeIcon from "./Icons/HomeIcon";
-import CategoriesIcon from "./Icons/CategoriesIcon";
-import TermsIcon from "./Icons/TermsIcon";
-import OptionsIcon from "./Icons/OptionsIcon";
-import ThemeIcon from "./Icons/ThemeIcon";
-import ProfileIcon from "./Icons/ProfileIcon";
 import { useAuth } from "../hooks/useAuth";
-import Button from "./Button";
-import Title from "./Title";
 import Paragraph from "./Paragraph";
+import {
+  FileIcon,
+  HomeIcon,
+  LogoIcon,
+  MicrochipIcon,
+  OptionsIcon,
+  ProfileIcon,
+} from "./Icons";
 
 const Header = () => {
   const { authToken } = useAuth();
@@ -28,12 +27,12 @@ const Header = () => {
           </li>
           <li>
             <NavLink to="/categories">
-              <CategoriesIcon />
+              <MicrochipIcon />
             </NavLink>
           </li>
           <li>
             <NavLink to="/terms">
-              <TermsIcon />
+              <FileIcon />
             </NavLink>
           </li>
           <li>
