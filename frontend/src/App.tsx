@@ -67,7 +67,7 @@ function App() {
                 }
               />
               <Route
-                path="/report"
+                path="/reports/:id"
                 element={
                   <PrivateRoute>
                     <Report />
