@@ -42,6 +42,61 @@
   width: 100%;
 
   display: grid;
-  grid-template-columns: 3fr 2fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 10px;
+
+  .chart-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .chart-status {
+      transition: 0.3s;
+      position: relative;
+
+      width: 200px;
+      height: 200px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 50%;
+      background: conic-gradient($green 0deg, #eaeaea 0deg);
+
+      .chart-value {
+        width: 75%;
+        height: 75%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 50%;
+        background-color: $white;
+
+        span {
+          text-align: center;
+          font-family: "Ubuntu";
+          font-weight: 500;
+          font-size: $textLarge;
+          color: $greyDark;
+        }
+      }
+    }
+  }
+  .error-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 128px;
+      height: 128px;
+    }
+  }
 }

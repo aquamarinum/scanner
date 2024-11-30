@@ -8,9 +8,15 @@ import Wrapper from "../components/Wrapper";
 import Headline from "../components/Headline";
 import TupleList from "../components/TupleList";
 import Chart from "../components/Chart";
+import ButtonWrapper from "../components/ButtonWrapper";
+import { useNavigate } from "react-router-dom";
 
 const Scan = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [state, setState] = useState<"pending" | "success" | "error">(
+    "pending"
+  );
+  const navigate = useNavigate();
 
   return (
     // <SingleScreen>
@@ -34,9 +40,28 @@ const Scan = () => {
       <Headline>Results</Headline>
       <div className="scan-status-bar">
         <TupleList />
-        <Chart />
+        <Chart value={75} state={state} />
         <TupleList />
       </div>
+      <ButtonWrapper>
+        <Button
+          onPress={() => {
+            if (state === "pending") {
+              setState("success");
+              return;
+            }
+            if (state === "success") {
+              setState("error");
+              return;
+            } else {
+              setState("pending");
+              return;
+            }
+          }}
+        >
+          Change
+        </Button>
+      </ButtonWrapper>
     </Wrapper>
   );
 };
