@@ -42,7 +42,7 @@ const Home = () => {
           <div className="home-logo-container">
             <LogoIcon />
           </div>
-          <Headline>AVSS</Headline>
+          <Headline>ASSS</Headline>
           <Subtitle>
             Welcome to the Automated System for Searching for Vulnerabilities in
             Web Applications. The system engine allows you to perform real-time

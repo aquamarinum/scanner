@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-content">
-        <Title>AVSS</Title>
+        <Title>ASSS</Title>
         <ul className="footer-nav">
           <li>
             <Link to="/">
