@@ -1,24 +1,18 @@
 import React from "react";
 
-const TupleList = () => {
+type TupleListProps = {
+  data: { key: string; value: string }[];
+};
+
+const TupleList: React.FC<TupleListProps> = ({ data }) => {
   return (
     <ul className="tuple-list">
-      <li>
-        <p className="key">Key param 123</p>
-        <p className="value">Value param 123</p>
-      </li>
-      <li>
-        <p className="key">123</p>
-        <p className="value">Value 123</p>
-      </li>
-      <li>
-        <p className="key">Key param 123</p>
-        <p className="value">Value param</p>
-      </li>
-      <li>
-        <p className="key">Key param 123</p>
-        <p className="value">Value param 123</p>
-      </li>
+      {data.map((item, idx) => (
+        <li key={idx}>
+          <p className="key">{item.key}</p>
+          <p className="value">{item.value}</p>
+        </li>
+      ))}
     </ul>
   );
 };
