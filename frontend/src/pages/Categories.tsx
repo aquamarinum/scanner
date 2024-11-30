@@ -5,7 +5,10 @@ import {
   DatabaseIcon,
   FileIcon,
   GitIcon,
+  GlobeIcon,
+  LogoIcon,
   MicrochipIcon,
+  PuzzleIcon,
   UserInterfaceIcon,
 } from "../components/Icons";
 import Card from "../components/Card";
@@ -35,14 +38,38 @@ const Categories = () => {
       <Centralized>
         <Headline>Categories</Headline>
         <div className="card-list">
-          {aboutFeaturesArray.map((card, idx) => (
-            <Card
-              icon={card.icon}
-              text={card.text}
-              key={card.text}
-              onClick={() => navigate(`/categories/${idx}`)}
-            />
-          ))}
+          <Card
+            icon={<LogoIcon />}
+            text="Automated Scanning"
+            onClick={() => navigate("/categories/0")}
+          />
+          <Card
+            icon={<GlobeIcon />}
+            text="XSS Test"
+            onClick={() => navigate("/categories/1")}
+          />
+          <Card
+            icon={<PuzzleIcon />}
+            text="SQL Injection"
+            onClick={() => navigate("/categories/2")}
+          />
+          <Card
+            icon={<MicrochipIcon />}
+            text="Optimization Test"
+            onClick={() => navigate("/categories/3")}
+          />
+          <Card
+            icon={<DatabaseIcon />}
+            text="CVE Databse"
+            onClick={() => navigate("/vulnerabilities")}
+          />
+          <Card
+            icon={<GitIcon />}
+            text="Contribute"
+            onClick={() =>
+              (window.location.href = "https://github.com/aquamarinum/scanner")
+            }
+          />
         </div>
       </Centralized>
     </SingleScreen>

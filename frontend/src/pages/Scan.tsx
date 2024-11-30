@@ -9,7 +9,7 @@ import Headline from "../components/Headline";
 import TupleList from "../components/TupleList";
 import Chart from "../components/Chart";
 import ButtonWrapper from "../components/ButtonWrapper";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation } from "react-router-dom";
 import Paragraph from "../components/Paragraph";
 
 const fakedata1 = [
@@ -21,14 +21,28 @@ const fakedata1 = [
 ];
 
 const Scan = () => {
-  const [searchValue, setSearchValue] = useState<string>(
-    "http://localhost:8080/scuns"
-  );
+  const [searchValue, setSearchValue] = useState<string>("");
   const [state, setState] = useState<"pending" | "success" | "error">(
     "success"
   );
   const [isUrlEntered, setUrlEntered] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // switch (location.pathname) {
+  //   case "/categories/0":
+  //     console.log("FUNC 1");
+  //     break;
+  //   case "/categories/1":
+  //     console.log("FUNC 22");
+  //     break;
+  //   case "/categories/2":
+  //     console.log("FUNC 333");
+  //     break;
+  //   default:
+  //     console.log("DEFAULT FUNC");
+  //     break;
+  // }
 
   const onChangeUrl = () => {
     setUrlEntered(false);
