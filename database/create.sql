@@ -1,4 +1,3 @@
-------------------- CREDENTIALS --------------
 CREATE DATABASE Scannerdb;
 
 USE Scannerdb;
@@ -8,8 +7,8 @@ CREATE TABLE Users (
   username VARCHAR(50),
   email VARCHAR(100),
   passwordHash VARCHAR(255),
-  activeStatus VARCHAR(50),
-  registrated DATETIME
+  activeStatus VARCHAR(50) default 'active',
+  registrated DATETIME default current_timestamp
 );
 
 CREATE TABLE Subscriptions (
@@ -40,34 +39,43 @@ CREATE TABLE UserSubscriptions (
   startDate DATETIME,
   endDate DATETIME,
   status VARCHAR(50),
-  FOREIGN KEY (userId) REFERENCES User(userId),
-  FOREIGN KEY (subscriptionId) REFERENCES Subscription(subscriptionId),
-  FOREIGN KEY (paymentId) REFERENCES Payments(solutionId) UNIQUE
+  FOREIGN KEY (userId) REFERENCES Users(userId),
+  FOREIGN KEY (subscriptionId) REFERENCES Subscriptions(subscriptionId),
+  FOREIGN KEY (paymentId) REFERENCES Payments(paymentId)
 );
 
 CREATE TABLE SubscriptionFeatures (
-  featureId INT PRIMARY KEY,
+  featureId INT,
   subscriptionId INT,
-  FOREIGN KEY (subscriptionId) REFERENCES Subscription(subscriptionId),
-  FOREIGN KEY (featureId) REFERENCES Feature(featureId)
+  FOREIGN KEY (subscriptionId) REFERENCES Subscriptions(subscriptionId) 
+  on delete cascade
+  on update cascade,
+  FOREIGN KEY (featureId) REFERENCES Features(featureId)
+  on delete cascade
+  on update cascade
 );
 
----------------- SCANS ---------------------
+--------- -----------------------------------------------------------
 
 CREATE TABLE Scans (
   scanId INT PRIMARY KEY,
+  userId INT,
   startTime DATETIME,
   endTime DATETIME,
   scanType VARCHAR(255),
   status VARCHAR(50),
+  foreign key (userId) references Users(userId)
 );
 
 CREATE TABLE Targets (
   targetId INT PRIMARY KEY,
+  scanId INT,
   name VARCHAR(100),
-  address VARCHAR(50),
-  operatingSystem VARCHAR(100),
-  createdAt DATETIME
+  hostname VARCHAR(50),
+  operationSystem VARCHAR(100),
+  createdAt DATETIME default current_timestamp,
+  foreign key (scanId) references Scans(scanId) 
+  on delete cascade on update cascade
 );
 
 CREATE TABLE AuditLogs (
@@ -75,65 +83,19 @@ CREATE TABLE AuditLogs (
   scanId INT,
   time DATETIME,
   action VARCHAR(50),
-  FOREIGN KEY (scanId) REFERENCES Scan(scanId)
-);
-
-CREATE TABLE ScanTargets (
-  scanId INT PRIMARY KEY,
-  targetId INT,
-  FOREIGN KEY (scanId) REFERENCES Scans(scanId),
-  FOREIGN KEY (targetId) REFERENCES Targets(targetId)
-);
-
-CREATE TABLE UserScans (
-  userId INT,
-  scanId INT,
-  FOREIGN KEY (userId) REFERENCES Users(userId),
   FOREIGN KEY (scanId) REFERENCES Scans(scanId)
-);
-
-CREATE TABLE ScanResults (
-  scanResultId INT PRIMARY KEY,
-  scanId INT,
-  status VARCHAR(50),
-  createdAt DATETIME,
-  FOREIGN KEY (scanId) REFERENCES Scans(scanId) UNIQUE,
+  on delete cascade
+  on update cascade
 );
 
 CREATE TABLE Reports (
   reportId INT PRIMARY KEY,
-  scanResultId INT,
+  scanId INT,
   createdAt DATETIME,
   path VARCHAR(255),
   format VARCHAR(50),
-  FOREIGN KEY (scanResultId) REFERENCES ScanResults(scanResultId) UNIQUE,
-);
-
-CREATE TABLE Vulnerabilities (
-  vulnerabilityId INT PRIMARY KEY,
-  cveName VARCHAR(50),
-  description TEXT,
-  dangerLevel VARCHAR(50),
-  publishedAt DATETIME,
-);
-
-CREATE TABLE ScanVulnerabilities (
-  scanResultId INT,
-  vulnerabilityId INT,
-  FOREIGN KEY (scanResultId) REFERENCES ScanResults(scanResultId),
-  FOREIGN KEY (vulnerabilityId) REFERENCES Vulnerabilities(vulnerabilityId)
-);
-
-CREATE TABLE Solutions (
-  solutionId INT PRIMARY KEY,
-  description TEXT,
-);
-
-CREATE TABLE VulnerabilitySolutions (
-  vulnerabilityId INT,
-  solutionId INT,
-  FOREIGN KEY (vulnerabilityId) REFERENCES Vulnerabilities(vulnerabilityId),
-  FOREIGN KEY (solutionId) REFERENCES Solutions(solutionId)
+  FOREIGN KEY (scanId) REFERENCES Scans(scanId)
+  on delete cascade on update cascade
 );
 
 CREATE TABLE Plugins (
@@ -148,4 +110,31 @@ CREATE TABLE ScanPlugins (
   scanId INT,
   FOREIGN KEY (pluginId) REFERENCES Plugins(pluginId),
   FOREIGN KEY (scanId) REFERENCES Scans(scanId)
+);
+
+CREATE TABLE Vulnerabilities (
+  vulnerabilityId INT PRIMARY KEY,
+  cveName VARCHAR(50),
+  description TEXT,
+  dangerLevel INT,
+  publishedAt DATETIME
+);
+
+CREATE TABLE ScanVulnerabilities (
+  scanId INT,
+  vulnerabilityId INT,
+  FOREIGN KEY (scanId) REFERENCES Scans(ScanId),
+  FOREIGN KEY (vulnerabilityId) REFERENCES Vulnerabilities(vulnerabilityId)
+);
+
+CREATE TABLE Solutions (
+  solutionId INT PRIMARY KEY,
+  description TEXT
+);
+
+CREATE TABLE VulnerabilitySolutions (
+  vulnerabilityId INT,
+  solutionId INT,
+  FOREIGN KEY (vulnerabilityId) REFERENCES Vulnerabilities(vulnerabilityId),
+  FOREIGN KEY (solutionId) REFERENCES Solutions(solutionId)
 );
