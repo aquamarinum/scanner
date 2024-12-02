@@ -16,6 +16,22 @@ app.get("/vulnerabilities", (req, res) => {
     res.json(results);
   });
 });
+//@ts-ignore
+app.post("/users", (req, res) => {
+  console.log(req.body);
+  const { id, username, email, password } = req.body;
+  if (!email || !password || !id || !username) {
+    return res.status(400).send("Title and content are required.");
+  }
+
+  const sql = `INSERT INTO users (userId, username, email, passwordHash) VALUES (?, ?, ?, ?)`;
+  pool.query(sql, [id, username, email, password], (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.status(201);
+  });
+});
 
 app.get("/users", (req, res) => {
   pool.query("SELECT * FROM Users", (err, results) => {
