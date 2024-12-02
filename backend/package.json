@@ -8,6 +8,7 @@
     "mysql2": "^3.11.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.9.3",
     "ts-node": "^10.9.2",

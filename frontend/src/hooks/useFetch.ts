@@ -13,7 +13,7 @@ export function useFetch<T>(
   useEffect(() => {
     fetchData(url, headers)
       .then((res) => {
-        console.log(res?.data);
+        setData(res?.data);
       })
       .catch((err) => {
         console.log("[ERROR] CATCH HANDLING ERROR");

@@ -30,10 +30,10 @@ const aboutFeaturesArray: { icon: JSX.Element; text: string }[] = [
 ];
 
 const Home = () => {
-  const { data, loading, error } = useFetch("home URL");
+  // const { data, loading, error } = useFetch("home URL");
   const navigate = useNavigate();
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
   return (
     <>

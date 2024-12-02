@@ -1,8 +1,15 @@
+import cors from "cors";
 import express from "express";
 import pool from "./db";
 
 const app = express();
 const port = 3001;
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

@@ -21,6 +21,7 @@ import NotFound from "./pages/NotFound";
 import "./scss/app.scss";
 import Terms from "./pages/Terms";
 import AuthLayout from "./routes/AuthLayout";
+import Vulnerabilities from "./pages/Vulnerabilities";
 
 function App() {
   return (
@@ -59,6 +60,14 @@ function App() {
                 }
               />
               <Route
+                path="/vulnerabilities"
+                element={
+                  <PrivateRoute>
+                    <Vulnerabilities />
+                  </PrivateRoute>
+                }
+              />
+              <Route
                 path="/payment"
                 element={
                   <PrivateRoute>
@@ -92,8 +101,8 @@ function App() {
                   </AuthRoute>
                 }
               />
+              <Route path="*" element={<NotFound />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </Provider>

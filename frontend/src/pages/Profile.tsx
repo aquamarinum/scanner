@@ -10,7 +10,7 @@ import Headline from "../components/Headline";
 import Paragraph from "../components/Paragraph";
 import { ProfileIcon } from "../components/Icons";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const temptabs = ["Scans", "Payments", "Other"];
 const temptabscontent: {
@@ -51,11 +51,25 @@ const temptabscontent: {
   },
 ];
 
+type UserType = {
+  userId: string;
+  username: string;
+  email: string;
+  passwordHash: string;
+  activeStatus: string;
+  registrated: string;
+};
+
 const Profile = () => {
   const { logout } = useSignInOut();
   const { authToken } = useAuth();
-  const { data, loading, error } = useFetch("GET BY TOKEN-ID");
+  console.log(authToken);
+  const { data, loading, error } = useFetch<UserType>(
+    `http://localhost:3001/users/${authToken}`
+  );
+  console.log(data);
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
 
   const onPressLogout = () => {
     logout();
@@ -67,17 +81,21 @@ const Profile = () => {
 
   if (loading) return <Loader />;
 
+  if (!data || error) navigate("/notfound");
+
   return (
     <Wrapper>
       <div className="profile">
         <div className="profile-user-container">
-          <div className="profile-user">
-            <div className="photo">
-              <ProfileIcon />
+          {data && (
+            <div className="profile-user">
+              <div className="photo">
+                <ProfileIcon />
+              </div>
+              <Headline>{data.username}</Headline>
+              <Paragraph>{data.email}</Paragraph>
             </div>
-            <Headline>Administrator</Headline>
-            <Paragraph>admin@admin.com</Paragraph>
-          </div>
+          )}
         </div>
         <div className="profile-tab-container">
           <ul className="profile-tab">
