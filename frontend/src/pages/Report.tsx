@@ -57,12 +57,16 @@ const Report = () => {
           </Paragraph>
         </section>
         <section>
-          <Title>Chapter 1</Title>
+          <Title>Оптимизация</Title>
           <Paragraph>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis
-            ullam aliquam, dignissimos deserunt quam porro delectus quod
-            consequatur quibusdam harum, aperiam officia sapiente veniam,
-            voluptatibus nostrum recusandae laborum optio sed.
+            Чтобы сократить расход трафика, удалите неиспользуемый код
+            JavaScript и отложите загрузку скриптов до тех пор, пока они не
+            понадобятся. Полифилы и преобразования позволяют работать с новыми
+            возможностями JavaScript в устаревших браузерах. Однако для
+            современных браузеров большинство из них не требуется. Используйте
+            новую стратегию развертывания скриптов в пакетах JavaScript.
+            Обнаружение модульных и немодульных функций сократит объем кода в
+            современных браузерах и обеспечит поддержку устаревших браузеров.
           </Paragraph>
         </section>
         <section>
@@ -73,7 +77,7 @@ const Report = () => {
           </div>
         </section>
         <section>
-          <Title>Chapter 1</Title>
+          <Title>Безопасноть</Title>
           <Paragraph>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque error
             exercitationem libero soluta natus, vitae odit magni unde

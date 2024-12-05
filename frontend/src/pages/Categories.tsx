@@ -36,36 +36,36 @@ const Categories = () => {
   return (
     <SingleScreen>
       <Centralized>
-        <Headline>Categories</Headline>
+        <Headline>Категории</Headline>
         <div className="card-list">
           <Card
             icon={<LogoIcon />}
-            text="Automated Scanning"
-            onClick={() => navigate("/categories/0")}
+            text="Автоматизированное сканирование"
+            onClick={() => navigate("/search")}
           />
           <Card
             icon={<GlobeIcon />}
-            text="XSS Test"
-            onClick={() => navigate("/categories/1")}
+            text="Тестирование на XSS"
+            onClick={() => navigate("/search")}
           />
           <Card
             icon={<PuzzleIcon />}
-            text="SQL Injection"
-            onClick={() => navigate("/categories/2")}
+            text="Тестирование на SQL инъекцию"
+            onClick={() => navigate("/search")}
           />
           <Card
             icon={<MicrochipIcon />}
-            text="Optimization Test"
-            onClick={() => navigate("/categories/3")}
+            text="Оптимизационное тестирование"
+            onClick={() => navigate("/search")}
           />
           <Card
             icon={<DatabaseIcon />}
-            text="CVE Databse"
+            text="База данных CVE"
             onClick={() => navigate("/vulnerabilities")}
           />
           <Card
             icon={<GitIcon />}
-            text="Contribute"
+            text="Инспектировать"
             onClick={() =>
               (window.location.href = "https://github.com/aquamarinum/scanner")
             }

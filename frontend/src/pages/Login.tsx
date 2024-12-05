@@ -36,8 +36,8 @@ const Login = () => {
     <SingleScreen>
       {popupState && (
         <Popup
-          title="Error"
-          content="Invalid data or bad connection. Check your credentials and internet connection and try again"
+          title="Ошибка"
+          content="Данные введены неправильно или плохое подключение к интернету. Проверьте и попробуйте ещё раз"
           buttons={
             <Button active onPress={onClosePopup}>
               OK
@@ -46,22 +46,22 @@ const Login = () => {
         />
       )}
       <Form>
-        <Headline>Sign In</Headline>
-        <Input value={email} setter={setEmail} placeholder={"email"} />
+        <Headline>Авторизация</Headline>
+        <Input value={email} setter={setEmail} placeholder={"почта"} />
         <Input
           value={password}
           setter={setPassword}
-          placeholder="password"
+          placeholder="пароль"
           type="password"
         />
         <Button
           active={email.length > 0 && password.length > 0}
           onPress={onPressLogin}
         >
-          Login
+          Войти
         </Button>
         <Paragraph>
-          Or create a <Link to="/register">new account</Link>
+          Создать <Link to="/register">новый аккаунт</Link>
         </Paragraph>
       </Form>
     </SingleScreen>

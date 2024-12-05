@@ -8,98 +8,104 @@ import Wrapper from "../components/Wrapper";
 const Terms = () => {
   return (
     <Wrapper>
-      <Headline>Terms</Headline>
+      <Headline>Правила пользования</Headline>
       <Subtitle>
-        By using our Vulnerability Scanner service, you acknowledge that you
-        have read, understood, and agree to these Terms and Conditions. Thank
-        you for choosing AVSS!
+        Используя нашу услугу «Сканер уязвимостей», вы подтверждаете, что
+        прочитали, поняли и согласились с настоящими Условиями. Благодарить вам
+        за выбор AVSS!
       </Subtitle>
-      <Title>1. Acceptance of Terms</Title>
+      <Title>1. Нормы</Title>
       <Paragraph>
-        By using the Vulnerability Scanner, you acknowledge that you have read,
-        understood, and agree to be bound by these Terms and Conditions. We
-        reserve the right to modify these terms at any time. Changes will be
-        effective immediately upon posting on this page. Your continued use of
-        the service after any such changes constitutes your acceptance of the
-        new terms.
+        Используя Сканер уязвимостей, вы подтверждаете, что прочитали, поняли и
+        согласны соблюдать настоящие Положения и условия. Мы оставляем за собой
+        право изменять эти условия в любое время. Изменения будут вступают в
+        силу сразу после публикации на этой странице. Ваше дальнейшее
+        использование сервисом после любых таких изменений означает ваше
+        согласие с новых условий.
       </Paragraph>
-      <Title>2. Service Description</Title>
+      <Title>2. Описание сервиса</Title>
       <Paragraph>
-        Our Vulnerability Scanner is designed to identify and report potential
-        security vulnerabilities in web applications. The service includes
-        automated scanning, detailed reporting, and recommendations for
-        remediation.
+        Наш сканер уязвимостей предназначен для выявления и сообщения о
+        потенциальных уязвимости безопасности в веб-приложениях. Услуга включает
+        в себя автоматическое сканирование, подробные отчеты и рекомендации по
+        исправление.
       </Paragraph>
-      <Title>3. User Responsibilities</Title>
+      <Title>3. Ответственность пользователя</Title>
       <Paragraph>
-        You agree to use the Vulnerability Scanner only for lawful purposes and
-        in accordance with these Terms. You must not:
+        Вы соглашаетесь использовать Сканер уязвимостей только в законных целях
+        и в соответствии с настоящими Условиями. Вы не должны:
       </Paragraph>
       <Paragraph>
-        Use the service for any illegal or unauthorized purpose.
+        Используйте услугу в любых незаконных или несанкционированных целях.
+      </Paragraph>
+      <Paragraph>
+        Попытка получить несанкционированный доступ к любой части службы или
+        другим системы или сети, подключенные к услуге.
       </Paragraph>
       <Paragraph>
         Attempt to gain unauthorized access to any part of the service or other
         systems or networks connected to the service.
       </Paragraph>
+      <Title>4. Регистрация аккаунтов</Title>
       <Paragraph>
-        Interfere with or disrupt the security, integrity, or performance of the
-        service.
+        Чтобы использовать определенные функции нашего сервиса, вам может
+        потребоваться создать счет. Вы несете ответственность за сохранение
+        конфиденциальности вашей информацию об учетной записи и обо всех
+        действиях, которые происходят под вашим счет. Вы соглашаетесь немедленно
+        уведомить нас о любом несанкционированном использовании вашей учетной
+        записи или любое другое нарушение безопасности.
       </Paragraph>
-      <Title>4. Account Registration</Title>
+      <Title>5. Интеллектуальная собственность</Title>
       <Paragraph>
-        To use certain features of our service, you may be required to create an
-        account. You are responsible for maintaining the confidentiality of your
-        account information and for all activities that occur under your
-        account. You agree to notify us immediately of any unauthorized use of
-        your account or any other breach of security.
+        Весь контент, функции и функциональные возможности Сканера уязвимостей,
+        включая, помимо прочего, текст, графику, логотипы и программное
+        обеспечение, является исключительной собственностью [Название вашей
+        компании] или ее лицензиаров и являются защищены авторским правом,
+        товарными знаками и другими законами об интеллектуальной собственности.
+        Вы не имеете права воспроизводить, изменять, распространять или
+        создавать производные работы любой контент без нашего явного письменного
+        согласия.
       </Paragraph>
-      <Title>5. Intellectual Property</Title>
+      <Title>6. Ограничение ответственности</Title>
       <Paragraph>
-        All content, features, and functionality of the Vulnerability Scanner,
-        including but not limited to text, graphics, logos, and software, are
-        the exclusive property of [Your Company Name] or its licensors and are
-        protected by copyright, trademark, and other intellectual property laws.
-        You may not reproduce, modify, distribute, or create derivative works of
-        any content without our express written consent.
+        Ни при каких обстоятельствах [Название вашей компании] не несет
+        ответственности за любые косвенные, случайный, особый, косвенный или
+        штрафной ущерб, возникший в результате или в связи с использованием вами
+        Сканера уязвимостей. Наша общая сумма ответственность перед вами за
+        любые претензии, вытекающие из настоящих Условий или использования вами
+        услуга не может превышать сумму, уплаченную вами за услугу.
       </Paragraph>
-      <Title>6. Limitation of Liability</Title>
+      <Title>7. Отказ от гарантий</Title>
       <Paragraph>
-        In no event shall [Your Company Name] be liable for any indirect,
-        incidental, special, consequential, or punitive damages arising out of
-        or in connection with your use of the Vulnerability Scanner. Our total
-        liability to you for any claims arising from these Terms or your use of
-        the service shall not exceed the amount paid by you for the service.
+        Сканер уязвимостей предоставляется на условиях «как есть» и «как
+        доступно». основе. Мы не даем никаких гарантий, явных или
+        подразумеваемых, в отношении работу службы или информации, контента,
+        материалов или товары, включенные в услугу. В максимальной степени,
+        разрешенной закону, мы отказываемся от всех гарантий, явных или
+        подразумеваемых, включая, помимо прочего, ограничивается
+        подразумеваемыми гарантиями коммерческой ценности и пригодности для
+        особая цель.
       </Paragraph>
-      <Title>7. Disclaimer of Warranties</Title>
+      <Title>8. Применимое право</Title>
       <Paragraph>
-        The Vulnerability Scanner is provided on an "as-is" and "as-available"
-        basis. We make no warranties of any kind, express or implied, regarding
-        the operation of the service or the information, content, materials, or
-        products included in the service. To the fullest extent permitted by
-        law, we disclaim all warranties, express or implied, including but not
-        limited to implied warranties of merchantability and fitness for a
-        particular purpose.
+        Настоящие Условия регулируются и толкуются в соответствии с в
+        соответствии с законами [Вашей юрисдикции]. Любые споры, возникающие вне
+        или в связи с настоящими условиями или использованием вами услуги, будет
+        решено в судах [Вашей юрисдикции].
       </Paragraph>
-      <Title>8. Governing Law</Title>
+      <Title>9. Контактная информация</Title>
       <Paragraph>
-        These Terms and Conditions shall be governed by and construed in
-        accordance with the laws of [Your Jurisdiction]. Any disputes arising
-        out of or relating to these terms or your use of the service shall be
-        resolved in the courts of [Your Jurisdiction].
+        Если у вас есть какие-либо вопросы по поводу настоящих Положений и
+        условий, пожалуйста, свяжитесь с нами по адресу: [Название вашей
+        компании] [Ваш адрес] [Ваш адрес электронной почты] [Ваш номер телефона]
       </Paragraph>
-      <Title>9. Contact Information</Title>
+      <Title>10. Изменения в настоящих Условияхs</Title>
       <Paragraph>
-        If you have any questions about these Terms and Conditions, please
-        contact us at: [Your Company Name] [Your Address] [Your Email Address]
-        [Your Phone Number]
-      </Paragraph>
-      <Title>10. Changes to These Terms</Title>
-      <Paragraph>
-        We may update these Terms and Conditions from time to time. We will
-        notify you of any changes by posting the new Terms on this page. You are
-        advised to review these Terms periodically for any changes. Changes to
-        these Terms are effective when they are posted on this page.
+        Мы можем время от времени обновлять настоящие Условия. Мы будем
+        уведомлять вас о любых изменениях, публикуя новые Условия на этой
+        странице. Ты рекомендуется периодически просматривать настоящие Условия
+        на предмет каких-либо изменений. Изменения в настоящие Условия вступают
+        в силу с момента их публикации на этой странице.
       </Paragraph>
     </Wrapper>
   );

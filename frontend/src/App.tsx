@@ -22,6 +22,7 @@ import "./scss/app.scss";
 import Terms from "./pages/Terms";
 import AuthLayout from "./routes/AuthLayout";
 import Vulnerabilities from "./pages/Vulnerabilities";
+import ScanSettings from "./pages/ScanSettings";
 
 function App() {
   return (
@@ -39,17 +40,24 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route path="/categories">
-                <Route index element={<Categories />} />
-                <Route
-                  path=":scanid"
-                  element={
-                    <PrivateRoute>
-                      <Scan />
-                    </PrivateRoute>
-                  }
-                />
-              </Route>
+              <Route path="/categories" element={<Categories />} />
+              <Route
+                path="/search"
+                element={
+                  <PrivateRoute>
+                    <ScanSettings />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/scans/:id"
+                element={
+                  <PrivateRoute>
+                    <Scan />
+                  </PrivateRoute>
+                }
+              />
+
               <Route path="/terms" element={<Terms />} />
               <Route
                 path="/options"

@@ -12,7 +12,7 @@ import { ProfileIcon } from "../components/Icons";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const temptabs = ["Scans", "Payments", "Other"];
+const temptabs = ["Сканирования", "Логи", "Другое"];
 const temptabscontent: {
   status: boolean;
   hash: string;
@@ -92,7 +92,7 @@ const Profile = () => {
               <div className="photo">
                 <ProfileIcon />
               </div>
-              <Headline>{data.username}</Headline>
+              <Headline>{data.username && "Администратор"}</Headline>
               <Paragraph>{data.email}</Paragraph>
             </div>
           )}

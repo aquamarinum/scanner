@@ -43,8 +43,8 @@ const Register = () => {
     <SingleScreen>
       {popupState && (
         <Popup
-          title="Error"
-          content="Incorrect data or bad internet connection. Try to fix and do it again"
+          title="Ошибка"
+          content="Данные введены неправильно или плохое подключение к интернету. Проверьте и попробуйте ещё раз"
           buttons={
             <Button active onPress={onClosePopup}>
               OK
@@ -53,7 +53,7 @@ const Register = () => {
         />
       )}
       <Form>
-        <Headline>Sign Up</Headline>
+        <Headline>Регистрация</Headline>
         <Input
           value={email}
           setter={setEmail}
@@ -83,10 +83,10 @@ const Register = () => {
           }
           onPress={onPressLogin}
         >
-          Register
+          Зарегистрироваться
         </Button>
         <Paragrapgh>
-          Or return to <Link to="/login">login</Link>
+          Вернуться к <Link to="/login">авторизации</Link>
         </Paragrapgh>
       </Form>
     </SingleScreen>

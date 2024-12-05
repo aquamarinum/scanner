@@ -22,11 +22,11 @@ import Loader from "../components/Loader";
 import ButtonWrapper from "../components/ButtonWrapper";
 
 const aboutFeaturesArray: { icon: JSX.Element; text: string }[] = [
-  { icon: <MicrochipIcon />, text: "Automated Scanning" },
-  { icon: <DatabaseIcon />, text: "Vulnerability Database" },
-  { icon: <FileIcon />, text: "Detailed Reports" },
-  { icon: <UserInterfaceIcon />, text: "User-Friendly Interface" },
-  { icon: <GitIcon />, text: "Open-Source" },
+  { icon: <MicrochipIcon />, text: "Автоматизированное сканирование" },
+  { icon: <DatabaseIcon />, text: "База данных уязвимостей" },
+  { icon: <FileIcon />, text: "Подробные отчеты" },
+  { icon: <UserInterfaceIcon />, text: "Удобный интерфейс" },
+  { icon: <GitIcon />, text: "Открытый код" },
 ];
 
 const Home = () => {
@@ -42,36 +42,37 @@ const Home = () => {
           <div className="home-logo-container">
             <LogoIcon />
           </div>
-          <Headline>ASSS</Headline>
+          <Headline>АСПУ</Headline>
           <Subtitle>
-            Welcome to the Automated System for Searching for Vulnerabilities in
-            Web Applications. The system engine allows you to perform real-time
-            scanning and receive a detailed report on possible vulnerabilities
-            and how to solve them
+            Добро пожаловать в Автоматизированную систему поиска уязвимостей в
+            веб-приложениях. Движок системы позволяет выполнять сканирование в
+            режиме реального времени и получать подробный отчет о возможных
+            уязвимостях и способах их устранения.
           </Subtitle>
           <ButtonWrapper>
             <Button active onPress={() => navigate("/categories")}>
-              Get started
+              Начать работу
             </Button>
           </ButtonWrapper>
         </Centralized>
       </SingleScreen>
       <Wrapper>
-        <Title>Introduction</Title>
+        <Title>Легенда</Title>
         <Paragraph>
-          In today's digital world, the security of web applications is
-          critically important. Our vulnerability scanning system is designed to
-          identify and prevent potential threats that could jeopardize the data
-          and functionality of your applications.
+          В современном цифровом мире безопасность веб-приложений имеет решающее
+          значение. Наша система сканирования уязвимостей предназначена для
+          выявления и предотвращения потенциальных угроз, которые могут
+          поставить под угрозу данные и функциональность ваших приложений.
         </Paragraph>
-        <Title>Goal</Title>
+        <Title>Цель</Title>
         <Paragraph>
-          The primary goal of our system is to provide reliable protection for
-          web applications against known and emerging vulnerabilities. We aim to
-          enable developers and companies to focus on creating high-quality
-          software without worrying about security.
+          Основная цель нашей системы — обеспечить надежную защиту
+          веб-приложений от известных и новых уязвимостей. Мы стремимся
+          позволяют разработчикам и компаниям сосредоточиться на создании
+          высококачественных программное обеспечение, не беспокоясь о
+          безопасности.
         </Paragraph>
-        <Title>What We Offer</Title>
+        <Title>Особенности системы</Title>
         <div className="card-list">
           {aboutFeaturesArray.map((card) => (
             <Card
@@ -82,21 +83,22 @@ const Home = () => {
             />
           ))}
         </div>
-        <Title>Why It Matters</Title>
+        <Title>Почему это важно</Title>
         <Paragraph>
-          With the rise of cyber threats and the constant emergence of new
-          attack methods, securing web applications has never been more
-          critical. Vulnerabilities can lead to data breaches, financial losses,
-          and damage to a company's reputation. Our system helps minimize risks
-          by allowing you to identify and address issues before they can be
-          exploited by malicious actors.
+          С ростом киберугроз и постоянным появлением новых методов атаки,
+          защита веб-приложений никогда не была более критический. Уязвимости
+          могут привести к утечке данных, финансовым потерям, и ущерб репутации
+          компании. Наша система помогает минимизировать риски позволяя вам
+          выявлять и решать проблемы до того, как они могут быть решены.
+          эксплуатируется злоумышленниками.
         </Paragraph>
-        <Title>Conclusion</Title>
+        <Title>Заключение</Title>
         <Paragraph>
-          The vulnerability scanning system for web applications is your trusted
-          partner in ensuring security. We provide the tools and resources
-          necessary to protect your software and user data. Trust us, and we
-          will help you create a safer digital environment.
+          Система сканирования уязвимостей для веб-приложений — ваш надежный
+          помощник партнер в обеспечении безопасности. Мы предоставляем
+          инструменты и ресурсы необходимо для защиты вашего программного
+          обеспечения и пользовательских данных. Доверьтесь нам, и мы поможет
+          вам создать более безопасную цифровую среду.
         </Paragraph>
       </Wrapper>
     </>

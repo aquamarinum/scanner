@@ -1,7 +1,7 @@
 import React from "react";
 
 type TupleListProps = {
-  data: { key: string; value: string }[];
+  data: Record<string, string>[];
 };
 
 const TupleList: React.FC<TupleListProps> = ({ data }) => {
@@ -9,8 +9,8 @@ const TupleList: React.FC<TupleListProps> = ({ data }) => {
     <ul className="tuple-list">
       {data.map((item, idx) => (
         <li key={idx}>
-          <p className="key">{item.key}</p>
-          <p className="value">{item.value}</p>
+          <p className="key">{item[0]}</p>
+          <p className="value">{item[1]}</p>
         </li>
       ))}
     </ul>

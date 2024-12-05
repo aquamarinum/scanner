@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import SingleScreen from "../components/SingleScreen";
-import Centralized from "../components/Centralized";
-import Input from "../components/Input";
-import Form from "../components/Form";
 import Button from "../components/Button";
 import Wrapper from "../components/Wrapper";
 import Headline from "../components/Headline";
 import TupleList from "../components/TupleList";
 import Chart from "../components/Chart";
 import ButtonWrapper from "../components/ButtonWrapper";
-import { useLocation, useNavigate, useNavigation } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useNavigation,
+  useParams,
+} from "react-router-dom";
 import Paragraph from "../components/Paragraph";
+import { useFetch } from "../hooks/useFetch";
+import Loader from "../components/Loader";
+import { useAppSelector } from "../redux/store";
+import { searchSelector } from "../redux/filters/selectors";
 
 const fakedata1 = [
   { key: "key", value: "value" },
@@ -20,56 +24,58 @@ const fakedata1 = [
   { key: "key", value: "value" },
 ];
 
-const Scan = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [state, setState] = useState<"pending" | "success" | "error">(
-    "success"
-  );
-  const [isUrlEntered, setUrlEntered] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+interface LighthouseResult {
+  categories: {
+    performance: { score: number };
+    accessibility: { score: number };
+    "best-practices": { score: number };
+    seo: { score: number };
+  };
+  audits: {
+    [key: string]: {
+      id: string;
+      description: string;
+      score: number;
+      title: string;
+    };
+  };
+}
 
-  // switch (location.pathname) {
-  //   case "/categories/0":
-  //     console.log("FUNC 1");
-  //     break;
-  //   case "/categories/1":
-  //     console.log("FUNC 22");
-  //     break;
-  //   case "/categories/2":
-  //     console.log("FUNC 333");
-  //     break;
-  //   default:
-  //     console.log("DEFAULT FUNC");
-  //     break;
-  // }
+interface PageSpeedData {
+  analysisUTCTimestamp: string;
+  captchaResult: string;
+  id: string;
+  kind: string;
+  lighthouseResult: LighthouseResult;
+  loadingExperience: any; // Замените на более специфичный интерфейс, если необходимо
+}
+
+const Scan = () => {
+  const navigate = useNavigate();
+  const searchValue = useAppSelector(searchSelector);
+  const { data, loading, error } = useFetch<PageSpeedData>(
+    `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${searchValue}&key=AIzaSyA8XFjkHBVfFyv5YNum5VoWx2eTr3VwtZU`
+  );
+  const { id } = useParams();
+  console.log("data: ", data);
+  if (data) {
+    //@ts-ignore
+    console.log(data.lighthouseResult.audits);
+  }
+
+  const performance = data?.lighthouseResult.categories.performance.score;
 
   const onChangeUrl = () => {
-    setUrlEntered(false);
+    navigate("/search");
   };
 
-  const startScanning = () => {
-    setUrlEntered(true);
+  const onCreateReport = () => {
+    navigate(`/reports/${id}`);
   };
 
-  if (!isUrlEntered) {
-    return (
-      <SingleScreen>
-        <Centralized>
-          <Form>
-            <Input
-              value={searchValue}
-              setter={setSearchValue}
-              placeholder="URL..."
-            />
-            <Button active={searchValue.length > 0} onPress={startScanning}>
-              Start
-            </Button>
-          </Form>
-        </Centralized>
-      </SingleScreen>
-    );
-  }
+  if (loading) return <Loader />;
+
+  if (error) navigate("/notfound");
 
   return (
     <Wrapper>
@@ -81,16 +87,16 @@ const Scan = () => {
       </div>
       <div className="scan-status-bar">
         <TupleList data={fakedata1} />
-        <Chart value={75} state={state} />
+        <Chart
+          value={performance ? performance * 100 : 0}
+          state={data ? "success" : "error"}
+        />
         <TupleList data={fakedata1} />
       </div>
-      {state === "success" && (
-        <ButtonWrapper>
-          <Button onPress={() => navigate("/reports/1234567890")}>
-            Report
-          </Button>
-        </ButtonWrapper>
-      )}
+
+      <ButtonWrapper>
+        <Button onPress={onCreateReport}>Report</Button>
+      </ButtonWrapper>
     </Wrapper>
   );
 };
