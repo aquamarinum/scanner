@@ -15,15 +15,15 @@ import { useFetch } from "../hooks/useFetch";
 import Loader from "../components/Loader";
 import { useAppSelector } from "../redux/store";
 import { searchSelector } from "../redux/filters/selectors";
+import Title from "../components/Title";
+import Table from "../components/Table";
 
-const fakedata1 = [
-  { key: "key", value: "value" },
-  { key: "key", value: "value" },
-  { key: "key", value: "value" },
-  { key: "key", value: "value" },
-  { key: "key", value: "value" },
-];
-
+interface Audit {
+  score: number;
+  title: string;
+  id: string;
+  description: string;
+}
 interface LighthouseResult {
   categories: {
     performance: { score: number };
@@ -31,14 +31,7 @@ interface LighthouseResult {
     "best-practices": { score: number };
     seo: { score: number };
   };
-  audits: {
-    [key: string]: {
-      id: string;
-      description: string;
-      score: number;
-      title: string;
-    };
-  };
+  audits: Record<string, Audit>;
 }
 
 interface PageSpeedData {
@@ -57,11 +50,6 @@ const Scan = () => {
     `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${searchValue}&key=AIzaSyA8XFjkHBVfFyv5YNum5VoWx2eTr3VwtZU`
   );
   const { id } = useParams();
-  console.log("data: ", data);
-  if (data) {
-    //@ts-ignore
-    console.log(data.lighthouseResult.audits);
-  }
 
   const performance = data?.lighthouseResult.categories.performance.score;
 
@@ -86,17 +74,27 @@ const Scan = () => {
         </div>
       </div>
       <div className="scan-status-bar">
-        <TupleList data={fakedata1} />
+        <Title>Total score: </Title>
         <Chart
           value={performance ? performance * 100 : 0}
           state={data ? "success" : "error"}
         />
-        <TupleList data={fakedata1} />
-      </div>
-
-      <ButtonWrapper>
         <Button onPress={onCreateReport}>Report</Button>
-      </ButtonWrapper>
+      </div>
+      <Title>Full info</Title>
+      {data && (
+        <Table
+          head={["id", "title", "description", "score"]}
+          body={Object.values(data.lighthouseResult.audits).map(
+            ({ id, title, description, score }) => ({
+              id,
+              title,
+              description,
+              score,
+            })
+          )}
+        />
+      )}
     </Wrapper>
   );
 };

@@ -1,0 +1,24 @@
+@import "../variables";
+
+.table-wrapper {
+  padding: 20px;
+  width: 100%;
+  table {
+    width: 100%;
+
+    border: 4px solid $greyLight;
+    border-radius: 20px;
+    border-collapse: collapse;
+    tr:nth-child(even) {
+      background-color: #eaeaea;
+    }
+    th {
+      background-color: $green;
+    }
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid $greyLight;
+    }
+  }
+}

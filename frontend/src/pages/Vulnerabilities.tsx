@@ -3,6 +3,8 @@ import { useFetch } from "../hooks/useFetch";
 import Paragraph from "../components/Paragraph";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
+import Table from "../components/Table";
+import Headline from "../components/Headline";
 
 type VulnerabilityType = {
   vulnerabilityId: string;
@@ -24,19 +26,22 @@ const Vulnerabilities = () => {
   if (!data || error) navigate("/notfound");
 
   return (
-    <ul className="profile-actions">
-      {data &&
-        data.map((value) => (
-          <li>
-            <div className="status"></div>
-            <Paragraph>{value.cveName}</Paragraph>
-            <div className="date">
-              <Paragraph>{value.publishedAt}</Paragraph>
-              <Paragraph>{value.modified}</Paragraph>
-            </div>
-          </li>
-        ))}
-    </ul>
+    <div className="profile-actions">
+      <Headline>CVE DATABASE</Headline>
+      {data && (
+        <Table
+          head={[
+            "id",
+            "name",
+            "description",
+            "danger",
+            "published",
+            "modified",
+          ]}
+          body={data}
+        />
+      )}
+    </div>
   );
 };
 

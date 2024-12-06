@@ -11,40 +11,41 @@ import Paragraph from "../components/Paragraph";
 import { ProfileIcon } from "../components/Icons";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Table from "../components/Table";
 
 const temptabs = ["Сканирования", "Логи", "Другое"];
 const temptabscontent: {
-  status: boolean;
+  status: number;
   hash: string;
   dateStart: string;
   dateEnd: string;
 }[] = [
   {
-    status: true,
+    status: 1,
     hash: "62551b8f95f8ed1225824c07723ddede",
     dateStart: "29.11.2024-13:36:44",
     dateEnd: "29.11.2024-13:36:44",
   },
   {
-    status: false,
+    status: 0,
     hash: "62551b8f95f8ed1225824c07723ddede",
     dateStart: "29.11.2024-13:36:44",
     dateEnd: "29.11.2024-13:36:44",
   },
   {
-    status: false,
+    status: 0,
     hash: "62551b8f95f8ed1225824c07723ddede",
     dateStart: "29.11.2024-13:36:44",
     dateEnd: "29.11.2024-13:36:44",
   },
   {
-    status: true,
+    status: 1,
     hash: "62551b8f95f8ed1225824c07723ddede",
     dateStart: "29.11.2024-13:36:44",
     dateEnd: "29.11.2024-13:36:44",
   },
   {
-    status: true,
+    status: 1,
     hash: "62551b8f95f8ed1225824c07723ddede",
     dateStart: "29.11.2024-13:36:44",
     dateEnd: "29.11.2024-13:36:44",
@@ -109,27 +110,10 @@ const Profile = () => {
               </li>
             ))}
           </ul>
-          <ul className="profile-actions">
-            {temptabscontent.map((value, idx) => (
-              <li>
-                <Link to={"/reports/" + value.hash}>
-                  <div
-                    className="status"
-                    style={
-                      value.status
-                        ? { background: "green" }
-                        : { background: "red" }
-                    }
-                  ></div>
-                  <Paragraph>{value.hash}</Paragraph>
-                  <div className="date">
-                    <Paragraph>{value.dateStart}</Paragraph>
-                    <Paragraph>{value.dateEnd}</Paragraph>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Table
+            head={["status", "id", "date start", "date end"]}
+            body={temptabscontent}
+          />
         </div>
         <ButtonWrapper>
           <Button active onPress={onPressLogout}>
