@@ -2,6 +2,8 @@ import cors from "cors";
 import express from "express";
 import pool from "./db";
 
+import userRouter from "./routers/userRoter";
+
 const app = express();
 const port = 3001;
 
@@ -10,16 +12,29 @@ app.use(
     origin: "*",
   })
 );
+app.use(express.json());
+
+app.use("/api", userRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("successfully connected");
+});
+
+app.get("/test", (req, res) => {
+  console.log("BODY - ", req.body);
+  console.log("QUERY - ", req.query);
+  res.status(200).send("ok");
+});
+
+app.post("/test", (req, res) => {
+  console.log("BODY - ", req.body);
+  console.log("QUERY - ", req.query);
+  res.status(200).send("ok");
 });
 
 app.get("/vulnerabilities", (req, res) => {
   pool.query("SELECT * FROM Vulnerabilities", (err, results) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
+    if (err) return res.status(500).send(err);
     res.json(results);
   });
 });
