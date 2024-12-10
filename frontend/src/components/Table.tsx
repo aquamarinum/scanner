@@ -11,8 +11,6 @@ type TableData = {
 
 const Table: React.FC<TableData> = ({ head, body }) => {
   const keys = Object.keys(body[0]);
-  console.log("TABLEHEAD: ", head);
-  console.log("TABLEBODY: ", body);
   return (
     <div className="table-wrapper">
       <table>

@@ -9,30 +9,30 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-content">
-        <Title>ASSS</Title>
+        <Title>АСПУ</Title>
         <ul className="footer-nav">
           <li>
             <Link to="/">
-              <Paragraph>Home</Paragraph>
+              <Paragraph>Домой</Paragraph>
             </Link>
           </li>
           <li>
             <Link to="/categories">
-              <Paragraph>Categories</Paragraph>
+              <Paragraph>Категории</Paragraph>
             </Link>
           </li>
           <li>
             <Link to="/terms">
-              <Paragraph>Terms</Paragraph>
+              <Paragraph>Условия</Paragraph>
             </Link>
           </li>
           <li>
             <Link to="/Options">
-              <Paragraph>Options</Paragraph>
+              <Paragraph>Опции</Paragraph>
             </Link>
           </li>
         </ul>
-        <Subtitle>All right reserved</Subtitle>
+        <Subtitle>Все права защищены</Subtitle>
       </div>
     </footer>
   );

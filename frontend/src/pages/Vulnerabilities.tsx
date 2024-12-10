@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 import Table from "../components/Table";
 import Headline from "../components/Headline";
+import { GET_VULNERABILITIES_URL } from "../constants/BER";
 
 type VulnerabilityType = {
   vulnerabilityId: string;
@@ -17,7 +18,7 @@ type VulnerabilityType = {
 
 const Vulnerabilities = () => {
   const { data, loading, error } = useFetch<VulnerabilityType[]>(
-    "http://localhost:3001/vulnerabilities"
+    GET_VULNERABILITIES_URL
   );
   const navigate = useNavigate();
 

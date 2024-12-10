@@ -35,11 +35,11 @@ const Header = () => {
               <FileIcon />
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/options">
               <OptionsIcon />
             </NavLink>
-          </li>
+          </li> */}
         </ul>
         <Link to="/profile">
           {authToken ? <ProfileIcon /> : <Paragraph>Login</Paragraph>}

@@ -1,4 +1,4 @@
-export type Scan = {
+export type ScanType = {
   scanid: string;
   userid: string;
   started: string;

@@ -20,7 +20,7 @@ const NotFound = () => {
           </Subtitle>
         </div>
         <ButtonWrapper>
-          <Button active onPress={() => navigate(-1)}>
+          <Button active onPress={() => navigate(-2)}>
             Go Back
           </Button>
         </ButtonWrapper>

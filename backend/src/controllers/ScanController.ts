@@ -88,6 +88,7 @@ class ScanController {
   async addScan(req: Request, res: Response): Promise<void> {
     try {
       const scan = req.body;
+      console.log(scan);
       if (!scan) {
         res.status(400).json({
           error: "Scan data is required",
@@ -107,6 +108,7 @@ class ScanController {
         ],
         (err, results) => {
           if (err) {
+            console.log("ERROR OCCURED", err);
             return res.status(500).send(err);
           }
           res.status(200).send("Scan added");

@@ -9,11 +9,20 @@ import Wrapper from "../components/Wrapper";
 import Headline from "../components/Headline";
 import Paragraph from "../components/Paragraph";
 import { ProfileIcon } from "../components/Icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Table from "../components/Table";
+import {
+  GET_REPORTS_URL,
+  GET_SCANS_URL,
+  GET_USERS_URL,
+} from "../constants/BER";
+import { User } from "../@types/User";
+import { ScanType } from "../@types/Scan";
+import { Report } from "../@types/Report";
+import axios from "axios";
 
-const temptabs = ["Сканирования", "Логи", "Другое"];
+const temptabs = ["Сканирования", "Отчеты"];
 const temptabscontent: {
   status: number;
   hash: string;
@@ -52,25 +61,47 @@ const temptabscontent: {
   },
 ];
 
-type UserType = {
-  userId: string;
-  username: string;
-  email: string;
-  passwordHash: string;
-  activeStatus: string;
-  registrated: string;
-};
-
 const Profile = () => {
   const { logout } = useSignInOut();
   const { authToken } = useAuth();
-  console.log(authToken);
-  const { data, loading, error } = useFetch<UserType>(
-    `http://localhost:3001/users/${authToken}`
-  );
-  console.log(data);
   const [activeTab, setActiveTab] = useState(0);
   const navigate = useNavigate();
+
+  const [profileData, setProfileData] = useState<User | undefined>(undefined);
+  const [scansData, setScansData] = useState<ScanType[] | undefined>(undefined);
+  const [reportsData, setReportsData] = useState<Report[] | undefined>(
+    undefined
+  );
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const profileResp = await axios.get(`${GET_USERS_URL}/${authToken}`);
+        const scansResp = await axios.get(`${GET_SCANS_URL}/${authToken}`);
+        const reportsResp = await axios.get(
+          `${GET_REPORTS_URL}?priority=мнеможно`
+        );
+
+        if (profileResp) {
+          setProfileData(profileResp.data);
+        }
+        if (scansResp) {
+          setScansData(scansResp.data);
+        }
+        if (reportsResp) {
+          setReportsData(reportsResp.data);
+        }
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getData();
+  }, []);
 
   const onPressLogout = () => {
     logout();
@@ -82,19 +113,19 @@ const Profile = () => {
 
   if (loading) return <Loader />;
 
-  if (!data || error) navigate("/notfound");
+  if (error) navigate("/notfound");
 
   return (
     <Wrapper>
       <div className="profile">
         <div className="profile-user-container">
-          {data && (
+          {profileData && (
             <div className="profile-user">
               <div className="photo">
                 <ProfileIcon />
               </div>
-              <Headline>{data.username && "Администратор"}</Headline>
-              <Paragraph>{data.email}</Paragraph>
+              <Headline>{profileData.email}</Headline>
+              <Paragraph>{profileData.role}</Paragraph>
             </div>
           )}
         </div>
@@ -110,10 +141,40 @@ const Profile = () => {
               </li>
             ))}
           </ul>
-          <Table
-            head={["status", "id", "date start", "date end"]}
-            body={temptabscontent}
-          />
+          {activeTab === 0 ? (
+            <Table
+              head={["идентификатор", "начало", "конец", "тип", "статус"]}
+              body={
+                scansData
+                  ? scansData.map((scan) => {
+                      return {
+                        sid: scan.scanid,
+                        start: scan.started,
+                        ended: scan.ended,
+                        type: scan.type,
+                        status: scan.status,
+                      };
+                    })
+                  : temptabscontent
+              }
+            />
+          ) : (
+            <Table
+              head={["идентификатор", "создано", "источник", "формат"]}
+              body={
+                reportsData
+                  ? reportsData.map((rep) => {
+                      return {
+                        id: rep.reportId,
+                        created: rep.created,
+                        source: rep.source,
+                        format: rep.format,
+                      };
+                    })
+                  : temptabscontent
+              }
+            />
+          )}
         </div>
         <ButtonWrapper>
           <Button active onPress={onPressLogout}>

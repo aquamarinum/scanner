@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import { UserType } from "../@types/UserType";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 type AuthProviderProps = {
