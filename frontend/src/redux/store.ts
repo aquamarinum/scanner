@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import user from "./user/slice";
 import filters from "./filters/slice";
+import admin from "./admin/slice";
 
 export const store = configureStore({
   reducer: {
     user,
     filters,
+    admin,
   },
 });
 

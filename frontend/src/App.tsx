@@ -23,6 +23,8 @@ import Terms from "./pages/Terms";
 import AuthLayout from "./routes/AuthLayout";
 import Vulnerabilities from "./pages/Vulnerabilities";
 import ScanSettings from "./pages/ScanSettings";
+import AdminPanel from "./pages/AdminPanel";
+import AdminLogin from "./components/AdminPanel/AdminLogin";
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
+            <Route path="/admin" element={<AdminPanel />}></Route>
             <Route element={<AppLayout />}>
               <Route path="/" element={<Home />} />
               <Route
