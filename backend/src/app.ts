@@ -5,6 +5,7 @@ import pool from "./db";
 import userRouter from "./routers/userRoter";
 import vulnRouter from "./routers/vulnRouter";
 import scanRouter from "./routers/scanRouter";
+import reportRouter from "./routers/reportRouter";
 
 const app = express();
 const port = 3001;
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/api", userRouter);
 app.use("/api", vulnRouter);
 app.use("/api", scanRouter);
+app.use("/api", reportRouter);
 
 app.get("/", (req, res) => {
   res.send("successfully connected");
