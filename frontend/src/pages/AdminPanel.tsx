@@ -8,24 +8,19 @@ import Button from "../components/Button";
 import { setToken } from "../redux/admin/slice";
 import { adminTokenSelector } from "../redux/admin/selector";
 import { useNavigate } from "react-router-dom";
+import AdminReports from "../components/AdminPanel/AdminReports";
 
 const AdminPanel = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector(adminTokenSelector);
   const navigate = useNavigate();
+  const [activeSection, setActiveSection] = useState(0);
 
   if (!token) {
     return <AdminLogin />;
   }
 
-  return (
-    <SingleScreen>
-      <Centralized>
-        <Headline>Adminka</Headline>
-        <Button onPress={() => dispatch(setToken(null))}>Lagaut</Button>
-      </Centralized>
-    </SingleScreen>
-  );
+  return <AdminReports />;
 };
 
 export default AdminPanel;

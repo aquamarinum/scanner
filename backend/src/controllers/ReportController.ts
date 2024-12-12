@@ -1,11 +1,10 @@
 import pool from "../db";
 import { Request, Response } from "express";
-import { User } from "../models/User";
 
 const GET_QUERY = "SELECT * FROM Reports WHERE reportId = ?";
 const GET_ALL_QUERY = "SELECT * FROM Reports";
 const INSERT_QUERY =
-  "INSERT INTO Reports (reportId, scanId, created, source, format) VALUES (?, ?, default, 'server', default)";
+  "INSERT INTO Reports (reportId, scanId, created, source, format) VALUES (?, ?, current_timestamp(), 'server', 'xlsx')";
 const DELETE_QUERY = "DELETE FROM Reports WHERE reportId = ?";
 class ReportController {
   async getReport(req: Request, res: Response): Promise<void> {
@@ -80,12 +79,14 @@ class ReportController {
   async addReport(req: Request, res: Response): Promise<void> {
     try {
       const rep = req.body;
+      console.log(rep);
       if (!rep) {
         res.status(400).json({ error: "Report data is required" });
         return;
       }
       pool.query(INSERT_QUERY, [rep.reportid, rep.scanid], (err, results) => {
         if (err) {
+          console.log(err);
           return res.status(500).send(err);
         }
         res.status(200).send("Report CREATED");

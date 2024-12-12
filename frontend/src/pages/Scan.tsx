@@ -84,6 +84,10 @@ const Scan = () => {
           .post("http://localhost:3001/api/scans", scan)
           .then((res) => console.log("SUCCESS", res))
           .catch((err) => console.log("ERROR SCAN", err));
+        await axios.post("http://localhost:3001/api/reports", {
+          reportid: "rep" + Date.now(),
+          scanid: scan.scanid,
+        });
         setData(resp.data);
         setLoading(false);
       } catch (error) {

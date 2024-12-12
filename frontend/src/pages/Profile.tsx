@@ -178,7 +178,7 @@ const Profile = () => {
         </div>
         <ButtonWrapper>
           <Button active onPress={onPressLogout}>
-            SIGN OUT
+            Выйти
           </Button>
         </ButtonWrapper>
       </div>
