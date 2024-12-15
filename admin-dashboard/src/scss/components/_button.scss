@@ -1,0 +1,69 @@
+@import "../variables";
+
+.button {
+  transition: 0.3s;
+
+  margin: 10px 0;
+  padding: 15px;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Ubuntu";
+  font-weight: 700;
+  font-size: $textMedium;
+  color: $light;
+
+  border: none;
+  border-radius: 10px;
+  background: $dark;
+  box-shadow: 0 6px 1px $black;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:active {
+  box-shadow: none;
+  transform: translateY(6px);
+  background: $black;
+}
+
+.button-disabled {
+  opacity: 0.5;
+
+  margin: 10px 0;
+  padding: 15px;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Ubuntu";
+  font-weight: 700;
+  font-size: $textMedium;
+  color: $light;
+
+  border: none;
+  border-radius: 10px;
+  background: $dark;
+  box-shadow: 0 6px 1px $dark;
+}
+
+.dark {
+  .button {
+    color: $light;
+    background: $primary;
+    box-shadow: 0 6px 1px $lightD;
+  }
+  .button:active {
+    background: $primary;
+    box-shadow: none;
+  }
+}

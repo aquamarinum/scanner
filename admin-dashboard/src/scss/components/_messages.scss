@@ -1,0 +1,58 @@
+@import "../variables";
+
+.content main .bottom-data .reminders {
+  flex-grow: 1;
+  flex-basis: 300px;
+}
+
+.content main .bottom-data .reminders .task-list {
+  width: 100%;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.content main .bottom-data .reminders .task-list li {
+  width: 100%;
+  margin-bottom: 16px;
+  background: $grey;
+  padding: 14px 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content main .bottom-data .reminders .task-list li .task-title {
+  display: flex;
+  align-items: center;
+}
+
+.content main .bottom-data .reminders .task-list li .task-title p {
+  margin-left: 6px;
+  color: $dark;
+}
+
+.content main .bottom-data .reminders .task-list li .bx {
+  cursor: pointer;
+}
+
+.content main .bottom-data .reminders .task-list li.completed {
+  border-left: 10px solid $success;
+}
+
+.content main .bottom-data .reminders .task-list li.failed {
+  border-left: 10px solid $danger;
+}
+
+.content main .bottom-data .reminders .task-list li:last-child {
+  margin-bottom: 0;
+}
+
+.dark {
+  .content main .bottom-data .reminders .task-list li {
+    background: $greyD;
+  }
+  .content main .bottom-data .reminders .task-list li .task-title p {
+    color: $darkD;
+  }
+}

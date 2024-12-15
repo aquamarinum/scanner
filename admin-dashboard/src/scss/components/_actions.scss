@@ -1,0 +1,86 @@
+@import "../variables";
+
+.content main .bottom-data .orders {
+  flex-grow: 1;
+  flex-basis: 500px;
+}
+
+.content main .bottom-data .orders .table-container {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.content main .bottom-data .orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.content main .bottom-data .orders table th {
+  padding-bottom: 12px;
+  font-size: 13px;
+  text-align: left;
+  border-bottom: 1px solid $grey;
+}
+
+.content main .bottom-data .orders table td {
+  padding: 16px 0;
+}
+
+.content main .bottom-data .orders table tr td:first-child {
+  display: flex;
+  align-items: center;
+  grid-gap: 12px;
+  padding-left: 6px;
+}
+
+.content main .bottom-data .orders table td img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.content main .bottom-data .orders table tbody tr {
+  color: $dark;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.content main .bottom-data .orders table tbody tr:hover {
+  background: $grey;
+}
+
+.content main .bottom-data .orders table tr td .status {
+  font-size: 10px;
+  padding: 6px 16px;
+  color: $light;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.content main .bottom-data .orders table tr td .status.success {
+  background: $success;
+}
+
+.content main .bottom-data .orders table tr td .status.failed {
+  background: $danger;
+}
+
+.content main .bottom-data .orders table tr td .status.pending {
+  background: $warning;
+}
+
+.dark {
+  .content main .bottom-data .orders table th {
+    border-bottom-color: $greyD;
+  }
+  .content main .bottom-data .orders table tbody tr {
+    color: $darkD;
+  }
+  .content main .bottom-data .orders table tbody tr:hover {
+    background: $greyD;
+  }
+  .content main .bottom-data .orders table tr td .status {
+    color: $lightD;
+  }
+}

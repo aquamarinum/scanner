@@ -1,0 +1,8 @@
+@import "../variables";
+
+.content {
+  position: relative;
+  width: calc(100% - 230px);
+  left: 230px;
+  transition: all 0.3s ease;
+}

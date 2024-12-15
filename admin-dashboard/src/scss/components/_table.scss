@@ -1,0 +1,44 @@
+@import "../variables";
+
+.table-wrapper {
+  padding: 20px;
+  width: 100%;
+  table {
+    width: 100%;
+
+    border: 4px solid $dark;
+    border-radius: 20px;
+    border-collapse: collapse;
+    tr:nth-child(even) {
+      background-color: $light-success;
+    }
+    tr:nth-child(odd) {
+      background-color: $light-primary;
+    }
+    th {
+      background-color: $danger;
+    }
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid $dark;
+    }
+  }
+}
+
+.dark {
+  table {
+    border-color: $lightD;
+    tr:nth-child(even) {
+      background-color: $dark;
+    }
+    tr:nth-child(odd) {
+      background-color: $greyD;
+    }
+    th,
+    td {
+      color: $darkD;
+      border-color: $lightD;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import "../variables";
+
+.paragraph {
+  margin: 10px 0;
+
+  line-height: 30px;
+  text-align: justify;
+  font-family: "Ubuntu";
+  font-weight: 400;
+  font-size: $textNormal;
+  color: $dark;
+
+  a {
+    text-decoration: underline;
+    color: $dark;
+  }
+}
+
+.dark {
+  .paragraph {
+    color: $darkD;
+  }
+}

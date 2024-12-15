@@ -1,0 +1,45 @@
+@import "fonts";
+@import "./libs/normalize";
+@import "variables";
+@import "./components/all";
+
+body {
+  background: $grey;
+  overflow-x: hidden;
+}
+
+body.dark {
+  background: $greyD;
+}
+
+.centralized {
+  padding: 20px;
+
+  width: 75%;
+  max-width: 1024px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  width: 100%;
+  max-width: 1200px;
+}
+
+.button-wrapper {
+  width: 30%;
+}

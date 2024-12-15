@@ -1,0 +1,203 @@
+@import "../variables";
+
+header {
+  position: relative;
+  width: calc(100% - 230px);
+  left: 230px;
+  transition: all 0.3s ease;
+}
+
+header nav {
+  height: 56px;
+  background: $light;
+  padding: 0 24px 0 0;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+header nav::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: -40px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: -20px -20px 0 $light;
+}
+
+header nav a {
+  color: $dark;
+}
+
+header nav .bx.bx-menu {
+  cursor: pointer;
+  color: $dark;
+}
+
+header nav form {
+  max-width: 400px;
+  width: 100%;
+  margin-right: auto;
+}
+
+header nav form .form-input {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+header nav form .form-input input {
+  flex-grow: 1;
+  padding: 0 16px;
+  height: 100%;
+  border: none;
+  background: $grey;
+  border-radius: 36px 0 0 36px;
+  outline: none;
+  width: 100%;
+  color: $dark;
+}
+
+header nav form .form-input button {
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $primary;
+  color: $light;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+}
+
+header nav .notif {
+  font-size: 20px;
+  position: relative;
+}
+
+header nav .notif .count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  background: $danger;
+  border-radius: 50%;
+  color: $light;
+  border: 2px solid $light;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header nav .profile img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+header nav .theme-toggle {
+  display: block;
+  min-width: 50px;
+  height: 25px;
+  background: $grey;
+  cursor: pointer;
+  position: relative;
+  border-radius: 25px;
+}
+
+header nav .theme-toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  width: calc(25px - 4px);
+  background: $primary;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+header nav #theme-toggle:checked + .theme-toggle::before {
+  left: calc(100% - (25px - 4px) - 2px);
+}
+
+@media screen and (max-width: 576px) {
+  header nav form .form-input input {
+    display: none;
+  }
+
+  header nav form .form-input button {
+    width: auto;
+    height: auto;
+    background: transparent;
+    color: $dark;
+    border-radius: none;
+  }
+
+  header nav form.show .form-input input {
+    display: block;
+    width: 100%;
+  }
+
+  header nav form.show .form-input button {
+    width: 36px;
+    height: 100%;
+    color: $light;
+    background: $danger;
+    border-radius: 0 36px 36px 0;
+  }
+
+  header nav form.show ~ .notif,
+  header nav form.show ~ .profile {
+    display: none;
+  }
+}
+
+.dark {
+  header nav {
+    background: $lightD;
+  }
+
+  header nav::before {
+    box-shadow: -20px -20px 0 $lightD;
+  }
+
+  header nav a {
+    color: $darkD;
+  }
+
+  header nav .bx.bx-menu {
+    color: $darkD;
+  }
+
+  header nav form .form-input input {
+    background: $greyD;
+    color: $darkD;
+  }
+
+  header nav form .form-input button {
+    color: $lightD;
+  }
+
+  header nav .notif .count {
+    color: $lightD;
+    border-color: $lightD;
+  }
+
+  header nav .theme-toggle {
+    background: $greyD;
+  }
+}
