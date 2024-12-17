@@ -40,9 +40,8 @@ class LogController {
 
   async add(req, res) {
     try {
-      const { time, action } = req.body;
+      const { action } = req.body;
       const state = await LogService.create({
-        time,
         action,
       });
       if (!state) {

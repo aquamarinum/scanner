@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getData } from "../utils/getData";
+
 import Title from "../components/Title";
 import Insights from "../components/Insights";
 import Actions from "../components/Actions";
 import Messages from "../components/Messages";
 import Content from "../components/layouts/Content";
-import Button from "../components/Button";
+import Loader from "../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 const Analytics = () => {
+  const [data, setData] = useState([]);
+  const [stats, setStats] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getData("http://localhost:5000/api/logs")
+      .then((res) => {
+        setData(res.data);
+      })
+      .then(() =>
+        getData("http://localhost:5000/api/stats")
+          .then((res) => setStats(res.data))
+          .catch((err) => setError(true))
+      )
+      .catch((err) => {
+        console.log("[ERROR] CATCH HANDLING ERROR");
+        setError(true);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  console.log(stats);
+
+  if (loading) return <Loader />;
+
+  if (error) navigate("/notfound");
   return (
     <Content>
       <main>
@@ -33,29 +64,17 @@ const Analytics = () => {
 
         <Insights
           data={[
-            { value: 123, title: "Посещений" },
-            { value: 999999, title: "Сканирований" },
-            { value: 123, title: "Уязвимостей" },
-            { value: 999999, title: "Операций" },
+            { value: stats.users.count, title: "Пользователей" },
+            { value: stats.vulns.count, title: "Уязвимостей" },
+            { value: stats.scans.count, title: "Сканирований" },
+            { value: stats.reports.count, title: "Отчетов" },
           ]}
         />
 
         <div className="bottom-data">
-          <Actions
-            actions={[
-              { username: "John Doe", date: "14.12.2024", status: "success" },
-              { username: "Not john", date: "13.12.2024", status: "pending" },
-              { username: "Next john", date: "12.12.2024", status: "failed" },
-              { username: "John Doe", date: "14.12.2024", status: "success" },
-              { username: "Not john", date: "13.12.2024", status: "pending" },
-              { username: "Next john", date: "12.12.2024", status: "failed" },
-              { username: "John Doe", date: "14.12.2024", status: "success" },
-              { username: "Not john", date: "13.12.2024", status: "pending" },
-              { username: "Next john", date: "12.12.2024", status: "failed" },
-            ]}
-          />
+          <Actions actions={data} />
 
-          <Messages
+          {/* <Messages
             messages={[
               { title: "Database updated" },
               { title: "Database dropped" },
@@ -64,7 +83,7 @@ const Analytics = () => {
               { title: "Database updated" },
               { title: "Database dropped" },
             ]}
-          />
+          /> */}
         </div>
       </main>
     </Content>

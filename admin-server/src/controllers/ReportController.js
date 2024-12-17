@@ -1,3 +1,4 @@
+import LogService from "../services/LogService.js";
 import ReportService from "../services/ReportService.js";
 
 class ReportController {
@@ -61,6 +62,7 @@ class ReportController {
         source,
         format,
       });
+      await LogService.create({ action: "CREATE" });
       if (!state) {
         return res.status(404).json({ message: "report not created" });
       }
@@ -94,6 +96,7 @@ class ReportController {
     try {
       const { id } = req.params;
       const status = await ReportService.delete(id);
+      await LogService.create({ action: "DELETE" });
       if (!status) {
         return res.status(404).json({ message: "report not deleted" });
       }

@@ -3,6 +3,21 @@ import React from "react";
 import Title from "./Title";
 
 const Actions = ({ actions = null }) => {
+  const defineAction = (act) => {
+    switch (act) {
+      case "CREATE":
+        return "success";
+      case "UPDATE":
+        return "pending";
+      case "INSERT":
+        return "pending";
+      case "DELETE":
+        return "failed";
+
+      default:
+        return "failed";
+    }
+  };
   return (
     <div className="orders">
       <div className="header">
@@ -15,7 +30,7 @@ const Actions = ({ actions = null }) => {
         <table>
           <thead>
             <tr>
-              {["автор", "дата", "статус"].map((key) => (
+              {["Идентификатор", "время", "состояние"].map((key) => (
                 <th key={key}>{key}</th>
               ))}
             </tr>
@@ -24,11 +39,11 @@ const Actions = ({ actions = null }) => {
             {actions &&
               actions.map((action, idx) => (
                 <tr key={idx}>
-                  <td>{action.username}</td>
-                  <td>{action.date}</td>
+                  <td>{action.logId}</td>
+                  <td>{action.time}</td>
                   <td>
-                    <span className={"status " + action.status}>
-                      {action.status}
+                    <span className={"status " + defineAction(action.action)}>
+                      {action.action}
                     </span>
                   </td>
                 </tr>

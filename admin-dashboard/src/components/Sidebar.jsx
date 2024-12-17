@@ -33,10 +33,6 @@ const Sidebar = () => {
             path: "/management/scans",
           },
           {
-            name: "Цели",
-            path: "/management/targets",
-          },
-          {
             name: "Уязвимости",
             path: "/management/vulnerabilities",
           },

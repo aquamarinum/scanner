@@ -43,10 +43,10 @@ class LogService {
     return results;
   }
 
-  async create({ time, action }) {
+  async create({ action }) {
     const query =
-      "INSERT INTO auditLogs (logId, time, action) VALUES (?, ?, ?)";
-    await db.execute(query, ["log" + Date.now(), time, action]);
+      "INSERT INTO auditLogs (logId, time, action) VALUES (?, current_timestamp(), ?)";
+    await db.execute(query, ["log" + Date.now(), action]);
     return true;
   }
 

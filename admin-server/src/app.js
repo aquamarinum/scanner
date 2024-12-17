@@ -8,6 +8,7 @@ import vulnRouter from "./routers/vulnRouter.js";
 import logRouter from "./routers/logRouter.js";
 import targetRouter from "./routers/targetRouter.js";
 import reportRouter from "./routers/reportRouter.js";
+import statRouter from "./routers/statRouter.js";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use("/api", vulnRouter);
 app.use("/api", targetRouter);
 app.use("/api", logRouter);
 app.use("/api", reportRouter);
+app.use("/api", statRouter);
 
 app.listen(PORT, () =>
   console.log(`[LOG] APPLICATION STARTED ON PORT ${PORT}`)

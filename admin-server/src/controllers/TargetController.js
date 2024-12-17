@@ -1,3 +1,4 @@
+import LogService from "../services/LogService.js";
 import TargetService from "../services/TargetService.js";
 
 class TargetController {
@@ -64,6 +65,7 @@ class TargetController {
         operationSystem,
         created,
       });
+      await LogService.create({ action: "CREATE" });
       if (!state) {
         return res.status(404).json({ message: "target not created" });
       }
@@ -97,6 +99,7 @@ class TargetController {
     try {
       const { id } = req.params;
       const status = await TargetService.delete(id);
+      await LogService.create({ action: "DELETE" });
       if (!status) {
         return res.status(404).json({ message: "target not deleted" });
       }

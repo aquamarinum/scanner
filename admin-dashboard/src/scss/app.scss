@@ -27,8 +27,8 @@ body.dark {
 
 .flex-center {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -42,4 +42,43 @@ body.dark {
 
 .button-wrapper {
   width: 30%;
+}
+
+.adder {
+  width: 100%;
+  padding: 0 20px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.filters-block {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+
+  ul {
+    display: flex;
+
+    li {
+      transition: 0.3s;
+      padding: 5px 20px;
+      margin: 0 10px;
+      border: 2px solid $dark-grey;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.5;
+      }
+
+      &.active {
+        background: $primary;
+        color: white;
+      }
+    }
+  }
 }

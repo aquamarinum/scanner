@@ -1,3 +1,4 @@
+import LogService from "../services/LogService.js";
 import UserService from "../services/UserService.js";
 
 class UserController {
@@ -41,6 +42,7 @@ class UserController {
     try {
       const { id, email, role } = req.body;
       const status = await UserService.create({ id, email, role });
+      await LogService.create({ action: "CREATE" });
       if (!status) {
         return res.status(404).json({ message: "User not created" });
       }
@@ -55,6 +57,7 @@ class UserController {
     try {
       const { id, email } = req.body;
       const status = await UserService.update({ email, id });
+      await LogService.create({ action: "UPDATE" });
       if (!status) {
         return res.status(404).json({ message: "User not updated" });
       }
@@ -69,6 +72,7 @@ class UserController {
     try {
       const { id } = req.params;
       const status = await UserService.delete(id);
+      await LogService.create({ action: "DELETE" });
       if (!status) {
         return res.status(404).json({ message: "User not deleted" });
       }

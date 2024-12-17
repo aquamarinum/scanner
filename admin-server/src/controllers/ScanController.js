@@ -1,3 +1,4 @@
+import LogService from "../services/LogService.js";
 import ScanService from "../services/ScanService.js";
 
 class ScanController {
@@ -62,10 +63,11 @@ class ScanController {
         type,
         status,
       });
+      await LogService.create({ action: "CREATE" });
       if (!state) {
         return res.status(404).json({ message: "Scan not created" });
       }
-      res.status(200);
+      res.status(200).json({ message: "scan added" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal server error" });
@@ -90,10 +92,11 @@ class ScanController {
     try {
       const { id } = req.params;
       const status = await ScanService.delete(id);
+      await LogService.create({ action: "DELETE" });
       if (!status) {
         return res.status(404).json({ message: "Scan not deleted" });
       }
-      res.status(200);
+      res.status(200).json({ message: "scan deleted" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal server error" });
