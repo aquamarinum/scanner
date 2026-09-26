@@ -43,7 +43,7 @@ class ScanController {
         limit,
       });
       if (scans.length === 0) {
-        return res.status(404).json({ message: "scans not found" });
+        return res.status(404).json([]);
       }
       res.status(200).json(scans);
     } catch (error) {

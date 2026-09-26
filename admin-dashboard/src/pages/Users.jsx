@@ -61,7 +61,6 @@ const Users = () => {
     const newUser = {
       id: "ur" + Date.now(),
       email: email,
-      role: "user",
     };
     setEmail("");
     setPassword("");

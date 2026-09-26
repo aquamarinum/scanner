@@ -12,6 +12,7 @@ import SingleScreen from "../components/SingleScreen";
 import Loader from "../components/Loader";
 import Popup from "../components/Popup";
 import { useValidation } from "../hooks/useValidation";
+import axios from "axios";
 
 const Register = () => {
   const [email, setEmail] = useState("");

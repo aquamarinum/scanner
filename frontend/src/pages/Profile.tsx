@@ -79,29 +79,40 @@ const Profile = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const profileResp = await axios.get(`${GET_USERS_URL}/${authToken}`);
-        const scansResp = await axios.get(`${GET_SCANS_URL}/${authToken}`);
-        const reportsResp = await axios.get(
-          `${GET_REPORTS_URL}?priority=мнеможно`
-        );
-
-        if (profileResp) {
-          setProfileData(profileResp.data);
-        }
-        if (scansResp) {
-          setScansData(scansResp.data);
-        }
-        if (reportsResp) {
-          setReportsData(reportsResp.data);
-        }
+        await axios
+          .get(`${GET_USERS_URL}/${authToken}`)
+          .then((res) => {
+            if (res) {
+              setProfileData(res.data[0]);
+            }
+          })
+          .catch((err) => console.log(err));
+        await axios
+          .get(`${GET_SCANS_URL}/${authToken}`)
+          .then((res) => {
+            if (res) {
+              setScansData(res.data);
+            }
+          })
+          .catch((err) => console.log(err));
+        await axios
+          .get(`${GET_REPORTS_URL}`)
+          .then((res) => {
+            if (res) {
+              setReportsData(res.data);
+            }
+          })
+          .catch((err) => console.log(err));
       } catch (error) {
-        setError(true);
+        console.log(error);
       } finally {
         setLoading(false);
       }
     }
     getData();
   }, []);
+
+  console.log(scansData);
 
   const onPressLogout = () => {
     logout();
@@ -143,19 +154,18 @@ const Profile = () => {
           </ul>
           {activeTab === 0 ? (
             <Table
-              head={["идентификатор", "начало", "конец", "тип", "статус"]}
+              head={["начало", "конец", "тип", "статус"]}
               body={
                 scansData
                   ? scansData.map((scan) => {
                       return {
-                        sid: scan.scanid,
                         start: scan.started,
                         ended: scan.ended,
                         type: scan.type,
                         status: scan.status,
                       };
                     })
-                  : temptabscontent
+                  : []
               }
             />
           ) : (
@@ -171,7 +181,7 @@ const Profile = () => {
                         format: rep.format,
                       };
                     })
-                  : temptabscontent
+                  : []
               }
             />
           )}

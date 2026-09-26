@@ -65,7 +65,7 @@ const Analytics = () => {
         <Insights
           data={[
             { value: stats.users.count, title: "Пользователей" },
-            { value: stats.vulns.count, title: "Уязвимостей" },
+            { value: stats.vulns.count * 100, title: "Уязвимостей" },
             { value: stats.scans.count, title: "Сканирований" },
             { value: stats.reports.count, title: "Отчетов" },
           ]}

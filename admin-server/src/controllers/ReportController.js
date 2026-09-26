@@ -43,7 +43,7 @@ class ReportController {
         limit,
       });
       if (reports.length === 0) {
-        return res.status(404).json({ message: "reports not found" });
+        return res.status(404).json([]);
       }
       res.status(200).json(reports);
     } catch (error) {
@@ -54,11 +54,11 @@ class ReportController {
 
   async add(req, res) {
     try {
-      const { id, scanId, created, source, format } = req.body;
+      const { id, scanId, source, format } = req.body;
+      console.log("PARAMS: ", id, scanId, source, format);
       const state = await ReportService.create({
         id,
         scanId,
-        created,
         source,
         format,
       });

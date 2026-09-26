@@ -53,7 +53,7 @@ class ReportService {
     return results;
   }
 
-  async create({ id, scanId, created, source, format }) {
+  async create({ id, scanId, source, format }) {
     const query =
       "INSERT INTO reports (reportId, scanId, created, source, format) VALUES (?, ?, current_timestamp(), ?, ?)";
     await db.execute(query, [id, scanId, source, format]);

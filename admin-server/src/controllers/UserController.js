@@ -40,8 +40,8 @@ class UserController {
 
   async addUser(req, res) {
     try {
-      const { id, email, role } = req.body;
-      const status = await UserService.create({ id, email, role });
+      const { id, email } = req.body;
+      const status = await UserService.create({ id, email });
       await LogService.create({ action: "CREATE" });
       if (!status) {
         return res.status(404).json({ message: "User not created" });

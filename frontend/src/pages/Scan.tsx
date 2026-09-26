@@ -9,7 +9,7 @@ import { useAppSelector } from "../redux/store";
 import { searchSelector } from "../redux/filters/selectors";
 import Title from "../components/Title";
 import Table from "../components/Table";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScanType } from "../@types/Scan";
 import { useAuth } from "../hooks/useAuth";
 import axios from "axios";
@@ -50,6 +50,7 @@ const Scan = () => {
 
   const { id } = useParams();
   const { authToken } = useAuth();
+  const repId = useRef("");
 
   useEffect(() => {
     async function getData() {
@@ -58,9 +59,9 @@ const Scan = () => {
           `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${searchValue}&key=AIzaSyA8XFjkHBVfFyv5YNum5VoWx2eTr3VwtZU`
         );
         const date = new Date();
-        const scan: ScanType = {
-          scanid: Date.now().toString(),
-          userid: authToken as string,
+        const scan = {
+          id: Date.now().toString(),
+          userId: authToken as string,
           started:
             date.getFullYear() +
             "-" +
@@ -77,17 +78,14 @@ const Scan = () => {
             date.getDate() +
             " " +
             date.toLocaleTimeString(),
-          status: "finished",
           type: "full-testing",
+          status: "finished",
         };
+        console.log("SCAN", scan);
         await axios
-          .post("http://localhost:3001/api/scans", scan)
-          .then((res) => console.log("SUCCESS", res))
+          .post("http://localhost:5000/api/scans", scan)
+          .then((res) => (repId.current = scan.id))
           .catch((err) => console.log("ERROR SCAN", err));
-        await axios.post("http://localhost:3001/api/reports", {
-          reportid: "rep" + Date.now(),
-          scanid: scan.scanid,
-        });
         setData(resp.data);
         setLoading(false);
       } catch (error) {
@@ -106,14 +104,23 @@ const Scan = () => {
 
   const onCreateReport = () => {
     if (data) {
-      const worksheet = XLSX.utils.json_to_sheet(
-        Object.values(data.lighthouseResult.audits)
-      );
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "scanData");
+      axios
+        .post("http://localhost:5000/api/reports", {
+          id: "rep" + Date.now(),
+          scanId: repId.current,
+          source: "server",
+          format: "xlsx",
+        })
+        .then(() => {
+          const worksheet = XLSX.utils.json_to_sheet(
+            Object.values(data.lighthouseResult.audits)
+          );
+          const workbook = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(workbook, worksheet, "scanData");
 
-      // Создание файла Excel
-      XLSX.writeFile(workbook, "scanData.xlsx");
+          // Создание файла Excel
+          XLSX.writeFile(workbook, "scanData.xlsx");
+        });
     }
   };
 

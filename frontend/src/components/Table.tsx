@@ -1,4 +1,5 @@
 import React from "react";
+import Title from "./Title";
 
 type TableRowType = {
   [key: string]: any;
@@ -10,6 +11,7 @@ type TableData = {
 };
 
 const Table: React.FC<TableData> = ({ head, body }) => {
+  if (body.length === 0) return <Title>Empty</Title>;
   const keys = Object.keys(body[0]);
   return (
     <div className="table-wrapper">

@@ -42,10 +42,10 @@ class UserService {
     return results;
   }
 
-  async create({ id, email, role }) {
+  async create({ id, email }) {
     const query =
-      "INSERT INTO Users (userId, email, registrated, role) VALUES (?, ?, current_timestamp(), ?)";
-    await db.execute(query, [id, email, role]);
+      "INSERT INTO Users (userId, email, registrated, role) VALUES (?, ?, current_timestamp(), 'user')";
+    await db.execute(query, [id, email]);
     return true;
   }
 

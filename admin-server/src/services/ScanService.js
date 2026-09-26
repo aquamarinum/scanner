@@ -2,7 +2,7 @@ import db from "../db.js";
 
 class ScanService {
   async getById(id) {
-    const query = "SELECT * FROM Scans WHERE scanId = ?";
+    const query = "SELECT * FROM Scans WHERE userId = ?";
     const [results] = await db.execute(query, [id]);
     return results;
   }

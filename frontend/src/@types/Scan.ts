@@ -1,5 +1,5 @@
 export type ScanType = {
-  scanid: string;
+  id: string;
   userid: string;
   started: string;
   ended: string;

@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import axios from "axios";
 
 export function useSignInOut() {
   const [loading, setLoading] = useState(false);
@@ -34,8 +35,16 @@ export function useSignInOut() {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        signin(userCredential.user.uid);
-        navigate("/");
+        axios
+          .post("http://localhost:5000/api/users", {
+            id: userCredential.user.uid,
+            email: email,
+          })
+          .then(() => {
+            signin(userCredential.user.uid);
+            navigate("/");
+          })
+          .catch((err) => console.error(err));
       })
       .catch((error) => {
         const errorCode = error.code;
